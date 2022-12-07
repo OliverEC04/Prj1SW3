@@ -18,5 +18,5 @@ class Light
 		
 	private:
 		LightState state;
-		int tick;
+		unsigned int tick;
 };

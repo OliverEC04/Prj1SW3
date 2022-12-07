@@ -3,29 +3,29 @@ Light.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800200  00800200  00000272  2**0
+  0 .data         00000000  00800200  00800200  00000286  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000021e  00000000  00000000  00000054  2**1
+  1 .text         00000232  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  00000272  2**0
+  2 .comment      00000030  00000000  00000000  00000286  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002a4  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002b8  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 000000a0  00000000  00000000  000002e4  2**0
+  4 .debug_aranges 00000060  00000000  00000000  000002f8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   000011c8  00000000  00000000  00000384  2**0
+  5 .debug_info   00000f99  00000000  00000000  00000358  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000ece  00000000  00000000  0000154c  2**0
+  6 .debug_abbrev 00000d80  00000000  00000000  000012f1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000004ac  00000000  00000000  0000241a  2**0
+  7 .debug_line   0000037d  00000000  00000000  00002071  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000120  00000000  00000000  000028c8  2**2
+  8 .debug_frame  00000098  00000000  00000000  000023f0  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000006cc  00000000  00000000  000029e8  2**0
+  9 .debug_str    000005ff  00000000  00000000  00002488  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000026b  00000000  00000000  000030b4  2**0
+ 10 .debug_loc    00000098  00000000  00000000  00002a87  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000070  00000000  00000000  0000331f  2**0
+ 11 .debug_ranges 00000040  00000000  00000000  00002b1f  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -155,237 +155,250 @@ Disassembly of section .text:
   ee:	cd bf       	out	0x3d, r28	; 61
   f0:	00 e0       	ldi	r16, 0x00	; 0
   f2:	0c bf       	out	0x3c, r16	; 60
-  f4:	12 d0       	rcall	.+36     	; 0x11a <main>
-  f6:	91 c0       	rjmp	.+290    	; 0x21a <_exit>
+  f4:	7e d0       	rcall	.+252    	; 0x1f2 <main>
+  f6:	9b c0       	rjmp	.+310    	; 0x22e <_exit>
 
 000000f8 <__bad_interrupt>:
   f8:	83 cf       	rjmp	.-250    	; 0x0 <__vectors>
 
 000000fa <_ZN5LightC1Ev>:
-#include "Headers/light.h"
-
-Light::Light()
-{
-	DDRH = 0xFF;
-  fa:	8f ef       	ldi	r24, 0xFF	; 255
-  fc:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <__TEXT_REGION_LENGTH__+0x7c0101>
- 100:	08 95       	ret
-
-00000102 <_ZN5Light2onEv>:
+	state = Off;
 }
 
-void Light::on()
+void Light::brake()
 {
-	PORTH |= 0b01100000;
- 102:	e2 e0       	ldi	r30, 0x02	; 2
- 104:	f1 e0       	ldi	r31, 0x01	; 1
- 106:	80 81       	ld	r24, Z
- 108:	80 66       	ori	r24, 0x60	; 96
- 10a:	80 83       	st	Z, r24
- 10c:	08 95       	ret
+	state = Brake;
+  fa:	fc 01       	movw	r30, r24
+  fc:	12 82       	std	Z+2, r1	; 0x02
+  fe:	11 82       	std	Z+1, r1	; 0x01
+ 100:	8f ef       	ldi	r24, 0xFF	; 255
+ 102:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <__TEXT_REGION_LENGTH__+0x7c0101>
+ 106:	08 95       	ret
 
-0000010e <_ZN5Light3offEv>:
+00000108 <_ZN5Light2onEv>:
+ 108:	21 e0       	ldi	r18, 0x01	; 1
+ 10a:	fc 01       	movw	r30, r24
+ 10c:	20 83       	st	Z, r18
+ 10e:	08 95       	ret
+
+00000110 <_ZN5Light6updateEv>:
 }
 
-void Light::off()
+void Light::update()
 {
-	PORTH &= 0b10011111;
- 10e:	e2 e0       	ldi	r30, 0x02	; 2
- 110:	f1 e0       	ldi	r31, 0x01	; 1
+ 110:	fc 01       	movw	r30, r24
+	switch(state)
  112:	80 81       	ld	r24, Z
- 114:	8f 79       	andi	r24, 0x9F	; 159
- 116:	80 83       	st	Z, r24
- 118:	08 95       	ret
+ 114:	81 30       	cpi	r24, 0x01	; 1
+ 116:	59 f0       	breq	.+22     	; 0x12e <_ZN5Light6updateEv+0x1e>
+ 118:	20 f0       	brcs	.+8      	; 0x122 <_ZN5Light6updateEv+0x12>
+ 11a:	82 30       	cpi	r24, 0x02	; 2
+ 11c:	09 f4       	brne	.+2      	; 0x120 <_ZN5Light6updateEv+0x10>
+ 11e:	42 c0       	rjmp	.+132    	; 0x1a4 <_ZN5Light6updateEv+0x94>
+ 120:	5d c0       	rjmp	.+186    	; 0x1dc <_ZN5Light6updateEv+0xcc>
+	{
+		case Off:
+			PORTH &= 0b10011111;
+ 122:	a2 e0       	ldi	r26, 0x02	; 2
+ 124:	b1 e0       	ldi	r27, 0x01	; 1
+ 126:	8c 91       	ld	r24, X
+ 128:	8f 79       	andi	r24, 0x9F	; 159
+ 12a:	8c 93       	st	X, r24
+			break;
+ 12c:	57 c0       	rjmp	.+174    	; 0x1dc <_ZN5Light6updateEv+0xcc>
+			
+		case On:
+			if(tick % 3 == 0)
+ 12e:	41 81       	ldd	r20, Z+1	; 0x01
+ 130:	52 81       	ldd	r21, Z+2	; 0x02
+ 132:	9a 01       	movw	r18, r20
+ 134:	ab ea       	ldi	r26, 0xAB	; 171
+ 136:	ba ea       	ldi	r27, 0xAA	; 170
+ 138:	6b d0       	rcall	.+214    	; 0x210 <__umulhisi3>
+ 13a:	96 95       	lsr	r25
+ 13c:	87 95       	ror	r24
+ 13e:	9c 01       	movw	r18, r24
+ 140:	22 0f       	add	r18, r18
+ 142:	33 1f       	adc	r19, r19
+ 144:	82 0f       	add	r24, r18
+ 146:	93 1f       	adc	r25, r19
+ 148:	48 17       	cp	r20, r24
+ 14a:	59 07       	cpc	r21, r25
+ 14c:	31 f4       	brne	.+12     	; 0x15a <_ZN5Light6updateEv+0x4a>
+			{
+				PORTH |= 0b01000000;
+ 14e:	a2 e0       	ldi	r26, 0x02	; 2
+ 150:	b1 e0       	ldi	r27, 0x01	; 1
+ 152:	8c 91       	ld	r24, X
+ 154:	80 64       	ori	r24, 0x40	; 64
+ 156:	8c 93       	st	X, r24
+ 158:	05 c0       	rjmp	.+10     	; 0x164 <_ZN5Light6updateEv+0x54>
+			}
+			else
+			{
+				PORTH &= 0b10111111;
+ 15a:	a2 e0       	ldi	r26, 0x02	; 2
+ 15c:	b1 e0       	ldi	r27, 0x01	; 1
+ 15e:	8c 91       	ld	r24, X
+ 160:	8f 7b       	andi	r24, 0xBF	; 191
+ 162:	8c 93       	st	X, r24
+			}
+			if(tick % 6 == 0)
+ 164:	41 81       	ldd	r20, Z+1	; 0x01
+ 166:	52 81       	ldd	r21, Z+2	; 0x02
+ 168:	9a 01       	movw	r18, r20
+ 16a:	ab ea       	ldi	r26, 0xAB	; 171
+ 16c:	ba ea       	ldi	r27, 0xAA	; 170
+ 16e:	50 d0       	rcall	.+160    	; 0x210 <__umulhisi3>
+ 170:	96 95       	lsr	r25
+ 172:	87 95       	ror	r24
+ 174:	96 95       	lsr	r25
+ 176:	87 95       	ror	r24
+ 178:	9c 01       	movw	r18, r24
+ 17a:	22 0f       	add	r18, r18
+ 17c:	33 1f       	adc	r19, r19
+ 17e:	82 0f       	add	r24, r18
+ 180:	93 1f       	adc	r25, r19
+ 182:	88 0f       	add	r24, r24
+ 184:	99 1f       	adc	r25, r25
+ 186:	48 17       	cp	r20, r24
+ 188:	59 07       	cpc	r21, r25
+ 18a:	31 f4       	brne	.+12     	; 0x198 <_ZN5Light6updateEv+0x88>
+			{
+				PORTH |= 0b00100000;
+ 18c:	a2 e0       	ldi	r26, 0x02	; 2
+ 18e:	b1 e0       	ldi	r27, 0x01	; 1
+ 190:	8c 91       	ld	r24, X
+ 192:	80 62       	ori	r24, 0x20	; 32
+ 194:	8c 93       	st	X, r24
+ 196:	22 c0       	rjmp	.+68     	; 0x1dc <_ZN5Light6updateEv+0xcc>
+			}
+			else
+			{
+				PORTH &= 0b11011111;
+ 198:	a2 e0       	ldi	r26, 0x02	; 2
+ 19a:	b1 e0       	ldi	r27, 0x01	; 1
+ 19c:	8c 91       	ld	r24, X
+ 19e:	8f 7d       	andi	r24, 0xDF	; 223
+ 1a0:	8c 93       	st	X, r24
+ 1a2:	1c c0       	rjmp	.+56     	; 0x1dc <_ZN5Light6updateEv+0xcc>
+			}
+			
+			break;
+			
+		case Brake:
+			if(tick % 2 == 0)
+ 1a4:	81 81       	ldd	r24, Z+1	; 0x01
+ 1a6:	80 fd       	sbrc	r24, 0
+ 1a8:	06 c0       	rjmp	.+12     	; 0x1b6 <_ZN5Light6updateEv+0xa6>
+			{
+				PORTH |= 0b01000000;
+ 1aa:	a2 e0       	ldi	r26, 0x02	; 2
+ 1ac:	b1 e0       	ldi	r27, 0x01	; 1
+ 1ae:	8c 91       	ld	r24, X
+ 1b0:	80 64       	ori	r24, 0x40	; 64
+ 1b2:	8c 93       	st	X, r24
+ 1b4:	05 c0       	rjmp	.+10     	; 0x1c0 <_ZN5Light6updateEv+0xb0>
+			}
+			else
+			{
+				PORTH &= 0b10111111;
+ 1b6:	a2 e0       	ldi	r26, 0x02	; 2
+ 1b8:	b1 e0       	ldi	r27, 0x01	; 1
+ 1ba:	8c 91       	ld	r24, X
+ 1bc:	8f 7b       	andi	r24, 0xBF	; 191
+ 1be:	8c 93       	st	X, r24
+			}
+			if(tick % 2 == 0)
+ 1c0:	81 81       	ldd	r24, Z+1	; 0x01
+ 1c2:	80 fd       	sbrc	r24, 0
+ 1c4:	06 c0       	rjmp	.+12     	; 0x1d2 <_ZN5Light6updateEv+0xc2>
+			{
+				PORTH |= 0b00100000;
+ 1c6:	a2 e0       	ldi	r26, 0x02	; 2
+ 1c8:	b1 e0       	ldi	r27, 0x01	; 1
+ 1ca:	8c 91       	ld	r24, X
+ 1cc:	80 62       	ori	r24, 0x20	; 32
+ 1ce:	8c 93       	st	X, r24
+ 1d0:	05 c0       	rjmp	.+10     	; 0x1dc <_ZN5Light6updateEv+0xcc>
+			}
+			else
+			{
+				PORTH &= 0b11011111;
+ 1d2:	a2 e0       	ldi	r26, 0x02	; 2
+ 1d4:	b1 e0       	ldi	r27, 0x01	; 1
+ 1d6:	8c 91       	ld	r24, X
+ 1d8:	8f 7d       	andi	r24, 0xDF	; 223
+ 1da:	8c 93       	st	X, r24
+			}
+			
+			break;
+	}
+	
+	tick++;
+ 1dc:	81 81       	ldd	r24, Z+1	; 0x01
+ 1de:	92 81       	ldd	r25, Z+2	; 0x02
+ 1e0:	01 96       	adiw	r24, 0x01	; 1
+ 1e2:	92 83       	std	Z+2, r25	; 0x02
+ 1e4:	81 83       	std	Z+1, r24	; 0x01
+	
+	if(tick > 64000)
+ 1e6:	81 30       	cpi	r24, 0x01	; 1
+ 1e8:	9a 4f       	sbci	r25, 0xFA	; 250
+ 1ea:	10 f0       	brcs	.+4      	; 0x1f0 <_ZN5Light6updateEv+0xe0>
+	{
+		tick = 0;
+ 1ec:	12 82       	std	Z+2, r1	; 0x02
+ 1ee:	11 82       	std	Z+1, r1	; 0x01
+ 1f0:	08 95       	ret
 
-0000011a <main>:
+000001f2 <main>:
 #include <avr/io.h>
 #include "Headers/light.h"
-#include "Headers/uart_int.h"
 
 int main(void)
 {
- 11a:	cf 93       	push	r28
- 11c:	df 93       	push	r29
- 11e:	1f 92       	push	r1
- 120:	cd b7       	in	r28, 0x3d	; 61
- 122:	de b7       	in	r29, 0x3e	; 62
-    int i = 0;
-	
+ 1f2:	cf 93       	push	r28
+ 1f4:	df 93       	push	r29
+ 1f6:	00 d0       	rcall	.+0      	; 0x1f8 <main+0x6>
+ 1f8:	cd b7       	in	r28, 0x3d	; 61
+ 1fa:	de b7       	in	r29, 0x3e	; 62
 	Light light = Light();
- 124:	ce 01       	movw	r24, r28
- 126:	01 96       	adiw	r24, 0x01	; 1
- 128:	e8 df       	rcall	.-48     	; 0xfa <_ZN5LightC1Ev>
-	
-	InitUART(1200, 8, 0);
- 12a:	20 e0       	ldi	r18, 0x00	; 0
- 12c:	48 e0       	ldi	r20, 0x08	; 8
- 12e:	60 eb       	ldi	r22, 0xB0	; 176
- 130:	74 e0       	ldi	r23, 0x04	; 4
- 132:	80 e0       	ldi	r24, 0x00	; 0
- 134:	90 e0       	ldi	r25, 0x00	; 0
- 136:	12 d0       	rcall	.+36     	; 0x15c <_Z8InitUARTmhh>
-#include "Headers/light.h"
-#include "Headers/uart_int.h"
-
-int main(void)
-{
-    int i = 0;
- 138:	00 e0       	ldi	r16, 0x00	; 0
- 13a:	10 e0       	ldi	r17, 0x00	; 0
-	
-	InitUART(1200, 8, 0);
+ 1fc:	ce 01       	movw	r24, r28
+ 1fe:	01 96       	adiw	r24, 0x01	; 1
+ 200:	7c df       	rcall	.-264    	; 0xfa <_ZN5LightC1Ev>
+	light.on();
+ 202:	ce 01       	movw	r24, r28
+ 204:	01 96       	adiw	r24, 0x01	; 1
+ 206:	80 df       	rcall	.-256    	; 0x108 <_ZN5Light2onEv>
 	
     while (1) 
     {
-		if (i < 1000)
- 13c:	08 3e       	cpi	r16, 0xE8	; 232
- 13e:	83 e0       	ldi	r24, 0x03	; 3
- 140:	18 07       	cpc	r17, r24
- 142:	24 f4       	brge	.+8      	; 0x14c <main+0x32>
-		{
-			light.on();			
- 144:	ce 01       	movw	r24, r28
- 146:	01 96       	adiw	r24, 0x01	; 1
- 148:	dc df       	rcall	.-72     	; 0x102 <_ZN5Light2onEv>
- 14a:	03 c0       	rjmp	.+6      	; 0x152 <main+0x38>
-		}
-		else
-		{
-			light.off();
- 14c:	ce 01       	movw	r24, r28
- 14e:	01 96       	adiw	r24, 0x01	; 1
- 150:	de df       	rcall	.-68     	; 0x10e <_ZN5Light3offEv>
-		}
-		
-		SendChar(1);
- 152:	81 e0       	ldi	r24, 0x01	; 1
- 154:	39 d0       	rcall	.+114    	; 0x1c8 <_Z8SendCharc>
- 156:	0f 5f       	subi	r16, 0xFF	; 255
-		
-		i++;
- 158:	1f 4f       	sbci	r17, 0xFF	; 255
- 15a:	f0 cf       	rjmp	.-32     	; 0x13c <main+0x22>
+		light.update();
+ 208:	ce 01       	movw	r24, r28
+ 20a:	01 96       	adiw	r24, 0x01	; 1
+ 20c:	81 df       	rcall	.-254    	; 0x110 <_ZN5Light6updateEv>
+ 20e:	fc cf       	rjmp	.-8      	; 0x208 <main+0x16>
 
-0000015c <_Z8InitUARTmhh>:
-	
-	Light light = Light();
-	
-	InitUART(1200, 8, 0);
-	
-    while (1) 
- 15c:	cf 93       	push	r28
-char ReadChar()
-{
-	while (CharReady() == 0){}
-	//char x = UDR0;
-	return UDR0; //Returner den værdi som er i UDR0
-	}
- 15e:	c2 2f       	mov	r28, r18
- 160:	28 e1       	ldi	r18, 0x18	; 24
- 162:	20 93 c1 00 	sts	0x00C1, r18	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7c00c1>
- 166:	26 e0       	ldi	r18, 0x06	; 6
- 168:	20 93 c2 00 	sts	0x00C2, r18	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7c00c2>
- 16c:	dc 01       	movw	r26, r24
- 16e:	cb 01       	movw	r24, r22
- 170:	88 0f       	add	r24, r24
- 172:	99 1f       	adc	r25, r25
- 174:	aa 1f       	adc	r26, r26
- 176:	bb 1f       	adc	r27, r27
- 178:	88 0f       	add	r24, r24
- 17a:	99 1f       	adc	r25, r25
- 17c:	aa 1f       	adc	r26, r26
- 17e:	bb 1f       	adc	r27, r27
- 180:	9c 01       	movw	r18, r24
- 182:	ad 01       	movw	r20, r26
- 184:	22 0f       	add	r18, r18
- 186:	33 1f       	adc	r19, r19
- 188:	44 1f       	adc	r20, r20
- 18a:	55 1f       	adc	r21, r21
- 18c:	22 0f       	add	r18, r18
- 18e:	33 1f       	adc	r19, r19
- 190:	44 1f       	adc	r20, r20
- 192:	55 1f       	adc	r21, r21
- 194:	60 e0       	ldi	r22, 0x00	; 0
- 196:	74 e2       	ldi	r23, 0x24	; 36
- 198:	84 ef       	ldi	r24, 0xF4	; 244
- 19a:	90 e0       	ldi	r25, 0x00	; 0
- 19c:	1c d0       	rcall	.+56     	; 0x1d6 <__udivmodsi4>
- 19e:	21 50       	subi	r18, 0x01	; 1
- 1a0:	31 09       	sbc	r19, r1
- 1a2:	30 93 c5 00 	sts	0x00C5, r19	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7c00c5>
- 1a6:	20 93 c4 00 	sts	0x00C4, r18	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7c00c4>
- 1aa:	c1 11       	cpse	r28, r1
- 1ac:	06 c0       	rjmp	.+12     	; 0x1ba <_Z8InitUARTmhh+0x5e>
- 1ae:	e1 ec       	ldi	r30, 0xC1	; 193
- 1b0:	f0 e0       	ldi	r31, 0x00	; 0
- 1b2:	80 81       	ld	r24, Z
- 1b4:	8f 77       	andi	r24, 0x7F	; 127
- 1b6:	80 83       	st	Z, r24
- 1b8:	05 c0       	rjmp	.+10     	; 0x1c4 <_Z8InitUARTmhh+0x68>
- 1ba:	e1 ec       	ldi	r30, 0xC1	; 193
- 1bc:	f0 e0       	ldi	r31, 0x00	; 0
- 1be:	80 81       	ld	r24, Z
- 1c0:	80 68       	ori	r24, 0x80	; 128
- 1c2:	80 83       	st	Z, r24
- 1c4:	cf 91       	pop	r28
- 1c6:	08 95       	ret
+00000210 <__umulhisi3>:
+ 210:	a2 9f       	mul	r26, r18
+ 212:	b0 01       	movw	r22, r0
+ 214:	b3 9f       	mul	r27, r19
+ 216:	c0 01       	movw	r24, r0
+ 218:	a3 9f       	mul	r26, r19
+ 21a:	70 0d       	add	r23, r0
+ 21c:	81 1d       	adc	r24, r1
+ 21e:	11 24       	eor	r1, r1
+ 220:	91 1d       	adc	r25, r1
+ 222:	b2 9f       	mul	r27, r18
+ 224:	70 0d       	add	r23, r0
+ 226:	81 1d       	adc	r24, r1
+ 228:	11 24       	eor	r1, r1
+ 22a:	91 1d       	adc	r25, r1
+ 22c:	08 95       	ret
 
-000001c8 <_Z8SendCharc>:
-Parameter :
-	Tegn : Character for sending. 
-*************************************************************************/
-void SendChar(char Tegn)
-{
-	while ((UCSR0A & 0b00100000) == 0){}
- 1c8:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7c00c0>
- 1cc:	95 ff       	sbrs	r25, 5
- 1ce:	fc cf       	rjmp	.-8      	; 0x1c8 <_Z8SendCharc>
-   UDR0 = Tegn;
- 1d0:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7c00c6>
- 1d4:	08 95       	ret
+0000022e <_exit>:
+ 22e:	f8 94       	cli
 
-000001d6 <__udivmodsi4>:
- 1d6:	a1 e2       	ldi	r26, 0x21	; 33
- 1d8:	1a 2e       	mov	r1, r26
- 1da:	aa 1b       	sub	r26, r26
- 1dc:	bb 1b       	sub	r27, r27
- 1de:	fd 01       	movw	r30, r26
- 1e0:	0d c0       	rjmp	.+26     	; 0x1fc <__udivmodsi4_ep>
-
-000001e2 <__udivmodsi4_loop>:
- 1e2:	aa 1f       	adc	r26, r26
- 1e4:	bb 1f       	adc	r27, r27
- 1e6:	ee 1f       	adc	r30, r30
- 1e8:	ff 1f       	adc	r31, r31
- 1ea:	a2 17       	cp	r26, r18
- 1ec:	b3 07       	cpc	r27, r19
- 1ee:	e4 07       	cpc	r30, r20
- 1f0:	f5 07       	cpc	r31, r21
- 1f2:	20 f0       	brcs	.+8      	; 0x1fc <__udivmodsi4_ep>
- 1f4:	a2 1b       	sub	r26, r18
- 1f6:	b3 0b       	sbc	r27, r19
- 1f8:	e4 0b       	sbc	r30, r20
- 1fa:	f5 0b       	sbc	r31, r21
-
-000001fc <__udivmodsi4_ep>:
- 1fc:	66 1f       	adc	r22, r22
- 1fe:	77 1f       	adc	r23, r23
- 200:	88 1f       	adc	r24, r24
- 202:	99 1f       	adc	r25, r25
- 204:	1a 94       	dec	r1
- 206:	69 f7       	brne	.-38     	; 0x1e2 <__udivmodsi4_loop>
- 208:	60 95       	com	r22
- 20a:	70 95       	com	r23
- 20c:	80 95       	com	r24
- 20e:	90 95       	com	r25
- 210:	9b 01       	movw	r18, r22
- 212:	ac 01       	movw	r20, r24
- 214:	bd 01       	movw	r22, r26
- 216:	cf 01       	movw	r24, r30
- 218:	08 95       	ret
-
-0000021a <_exit>:
- 21a:	f8 94       	cli
-
-0000021c <__stop_program>:
- 21c:	ff cf       	rjmp	.-2      	; 0x21c <__stop_program>
+00000230 <__stop_program>:
+ 230:	ff cf       	rjmp	.-2      	; 0x230 <__stop_program>

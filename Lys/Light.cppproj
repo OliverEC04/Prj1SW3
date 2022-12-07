@@ -146,16 +146,10 @@
     <Compile Include="Headers\Light.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Headers\uart_int.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Light.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="uart_int.cpp">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
