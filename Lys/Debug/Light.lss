@@ -1,0 +1,391 @@
+
+Light.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800200  00800200  00000272  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000021e  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000272  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002a4  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000a0  00000000  00000000  000002e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000011c8  00000000  00000000  00000384  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000ece  00000000  00000000  0000154c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000004ac  00000000  00000000  0000241a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000120  00000000  00000000  000028c8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000006cc  00000000  00000000  000029e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000026b  00000000  00000000  000030b4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000070  00000000  00000000  0000331f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	71 c0       	rjmp	.+226    	; 0xe4 <__ctors_end>
+   2:	00 00       	nop
+   4:	79 c0       	rjmp	.+242    	; 0xf8 <__bad_interrupt>
+   6:	00 00       	nop
+   8:	77 c0       	rjmp	.+238    	; 0xf8 <__bad_interrupt>
+   a:	00 00       	nop
+   c:	75 c0       	rjmp	.+234    	; 0xf8 <__bad_interrupt>
+   e:	00 00       	nop
+  10:	73 c0       	rjmp	.+230    	; 0xf8 <__bad_interrupt>
+  12:	00 00       	nop
+  14:	71 c0       	rjmp	.+226    	; 0xf8 <__bad_interrupt>
+  16:	00 00       	nop
+  18:	6f c0       	rjmp	.+222    	; 0xf8 <__bad_interrupt>
+  1a:	00 00       	nop
+  1c:	6d c0       	rjmp	.+218    	; 0xf8 <__bad_interrupt>
+  1e:	00 00       	nop
+  20:	6b c0       	rjmp	.+214    	; 0xf8 <__bad_interrupt>
+  22:	00 00       	nop
+  24:	69 c0       	rjmp	.+210    	; 0xf8 <__bad_interrupt>
+  26:	00 00       	nop
+  28:	67 c0       	rjmp	.+206    	; 0xf8 <__bad_interrupt>
+  2a:	00 00       	nop
+  2c:	65 c0       	rjmp	.+202    	; 0xf8 <__bad_interrupt>
+  2e:	00 00       	nop
+  30:	63 c0       	rjmp	.+198    	; 0xf8 <__bad_interrupt>
+  32:	00 00       	nop
+  34:	61 c0       	rjmp	.+194    	; 0xf8 <__bad_interrupt>
+  36:	00 00       	nop
+  38:	5f c0       	rjmp	.+190    	; 0xf8 <__bad_interrupt>
+  3a:	00 00       	nop
+  3c:	5d c0       	rjmp	.+186    	; 0xf8 <__bad_interrupt>
+  3e:	00 00       	nop
+  40:	5b c0       	rjmp	.+182    	; 0xf8 <__bad_interrupt>
+  42:	00 00       	nop
+  44:	59 c0       	rjmp	.+178    	; 0xf8 <__bad_interrupt>
+  46:	00 00       	nop
+  48:	57 c0       	rjmp	.+174    	; 0xf8 <__bad_interrupt>
+  4a:	00 00       	nop
+  4c:	55 c0       	rjmp	.+170    	; 0xf8 <__bad_interrupt>
+  4e:	00 00       	nop
+  50:	53 c0       	rjmp	.+166    	; 0xf8 <__bad_interrupt>
+  52:	00 00       	nop
+  54:	51 c0       	rjmp	.+162    	; 0xf8 <__bad_interrupt>
+  56:	00 00       	nop
+  58:	4f c0       	rjmp	.+158    	; 0xf8 <__bad_interrupt>
+  5a:	00 00       	nop
+  5c:	4d c0       	rjmp	.+154    	; 0xf8 <__bad_interrupt>
+  5e:	00 00       	nop
+  60:	4b c0       	rjmp	.+150    	; 0xf8 <__bad_interrupt>
+  62:	00 00       	nop
+  64:	49 c0       	rjmp	.+146    	; 0xf8 <__bad_interrupt>
+  66:	00 00       	nop
+  68:	47 c0       	rjmp	.+142    	; 0xf8 <__bad_interrupt>
+  6a:	00 00       	nop
+  6c:	45 c0       	rjmp	.+138    	; 0xf8 <__bad_interrupt>
+  6e:	00 00       	nop
+  70:	43 c0       	rjmp	.+134    	; 0xf8 <__bad_interrupt>
+  72:	00 00       	nop
+  74:	41 c0       	rjmp	.+130    	; 0xf8 <__bad_interrupt>
+  76:	00 00       	nop
+  78:	3f c0       	rjmp	.+126    	; 0xf8 <__bad_interrupt>
+  7a:	00 00       	nop
+  7c:	3d c0       	rjmp	.+122    	; 0xf8 <__bad_interrupt>
+  7e:	00 00       	nop
+  80:	3b c0       	rjmp	.+118    	; 0xf8 <__bad_interrupt>
+  82:	00 00       	nop
+  84:	39 c0       	rjmp	.+114    	; 0xf8 <__bad_interrupt>
+  86:	00 00       	nop
+  88:	37 c0       	rjmp	.+110    	; 0xf8 <__bad_interrupt>
+  8a:	00 00       	nop
+  8c:	35 c0       	rjmp	.+106    	; 0xf8 <__bad_interrupt>
+  8e:	00 00       	nop
+  90:	33 c0       	rjmp	.+102    	; 0xf8 <__bad_interrupt>
+  92:	00 00       	nop
+  94:	31 c0       	rjmp	.+98     	; 0xf8 <__bad_interrupt>
+  96:	00 00       	nop
+  98:	2f c0       	rjmp	.+94     	; 0xf8 <__bad_interrupt>
+  9a:	00 00       	nop
+  9c:	2d c0       	rjmp	.+90     	; 0xf8 <__bad_interrupt>
+  9e:	00 00       	nop
+  a0:	2b c0       	rjmp	.+86     	; 0xf8 <__bad_interrupt>
+  a2:	00 00       	nop
+  a4:	29 c0       	rjmp	.+82     	; 0xf8 <__bad_interrupt>
+  a6:	00 00       	nop
+  a8:	27 c0       	rjmp	.+78     	; 0xf8 <__bad_interrupt>
+  aa:	00 00       	nop
+  ac:	25 c0       	rjmp	.+74     	; 0xf8 <__bad_interrupt>
+  ae:	00 00       	nop
+  b0:	23 c0       	rjmp	.+70     	; 0xf8 <__bad_interrupt>
+  b2:	00 00       	nop
+  b4:	21 c0       	rjmp	.+66     	; 0xf8 <__bad_interrupt>
+  b6:	00 00       	nop
+  b8:	1f c0       	rjmp	.+62     	; 0xf8 <__bad_interrupt>
+  ba:	00 00       	nop
+  bc:	1d c0       	rjmp	.+58     	; 0xf8 <__bad_interrupt>
+  be:	00 00       	nop
+  c0:	1b c0       	rjmp	.+54     	; 0xf8 <__bad_interrupt>
+  c2:	00 00       	nop
+  c4:	19 c0       	rjmp	.+50     	; 0xf8 <__bad_interrupt>
+  c6:	00 00       	nop
+  c8:	17 c0       	rjmp	.+46     	; 0xf8 <__bad_interrupt>
+  ca:	00 00       	nop
+  cc:	15 c0       	rjmp	.+42     	; 0xf8 <__bad_interrupt>
+  ce:	00 00       	nop
+  d0:	13 c0       	rjmp	.+38     	; 0xf8 <__bad_interrupt>
+  d2:	00 00       	nop
+  d4:	11 c0       	rjmp	.+34     	; 0xf8 <__bad_interrupt>
+  d6:	00 00       	nop
+  d8:	0f c0       	rjmp	.+30     	; 0xf8 <__bad_interrupt>
+  da:	00 00       	nop
+  dc:	0d c0       	rjmp	.+26     	; 0xf8 <__bad_interrupt>
+  de:	00 00       	nop
+  e0:	0b c0       	rjmp	.+22     	; 0xf8 <__bad_interrupt>
+	...
+
+000000e4 <__ctors_end>:
+  e4:	11 24       	eor	r1, r1
+  e6:	1f be       	out	0x3f, r1	; 63
+  e8:	cf ef       	ldi	r28, 0xFF	; 255
+  ea:	d1 e2       	ldi	r29, 0x21	; 33
+  ec:	de bf       	out	0x3e, r29	; 62
+  ee:	cd bf       	out	0x3d, r28	; 61
+  f0:	00 e0       	ldi	r16, 0x00	; 0
+  f2:	0c bf       	out	0x3c, r16	; 60
+  f4:	12 d0       	rcall	.+36     	; 0x11a <main>
+  f6:	91 c0       	rjmp	.+290    	; 0x21a <_exit>
+
+000000f8 <__bad_interrupt>:
+  f8:	83 cf       	rjmp	.-250    	; 0x0 <__vectors>
+
+000000fa <_ZN5LightC1Ev>:
+#include "Headers/light.h"
+
+Light::Light()
+{
+	DDRH = 0xFF;
+  fa:	8f ef       	ldi	r24, 0xFF	; 255
+  fc:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <__TEXT_REGION_LENGTH__+0x7c0101>
+ 100:	08 95       	ret
+
+00000102 <_ZN5Light2onEv>:
+}
+
+void Light::on()
+{
+	PORTH |= 0b01100000;
+ 102:	e2 e0       	ldi	r30, 0x02	; 2
+ 104:	f1 e0       	ldi	r31, 0x01	; 1
+ 106:	80 81       	ld	r24, Z
+ 108:	80 66       	ori	r24, 0x60	; 96
+ 10a:	80 83       	st	Z, r24
+ 10c:	08 95       	ret
+
+0000010e <_ZN5Light3offEv>:
+}
+
+void Light::off()
+{
+	PORTH &= 0b10011111;
+ 10e:	e2 e0       	ldi	r30, 0x02	; 2
+ 110:	f1 e0       	ldi	r31, 0x01	; 1
+ 112:	80 81       	ld	r24, Z
+ 114:	8f 79       	andi	r24, 0x9F	; 159
+ 116:	80 83       	st	Z, r24
+ 118:	08 95       	ret
+
+0000011a <main>:
+#include <avr/io.h>
+#include "Headers/light.h"
+#include "Headers/uart_int.h"
+
+int main(void)
+{
+ 11a:	cf 93       	push	r28
+ 11c:	df 93       	push	r29
+ 11e:	1f 92       	push	r1
+ 120:	cd b7       	in	r28, 0x3d	; 61
+ 122:	de b7       	in	r29, 0x3e	; 62
+    int i = 0;
+	
+	Light light = Light();
+ 124:	ce 01       	movw	r24, r28
+ 126:	01 96       	adiw	r24, 0x01	; 1
+ 128:	e8 df       	rcall	.-48     	; 0xfa <_ZN5LightC1Ev>
+	
+	InitUART(1200, 8, 0);
+ 12a:	20 e0       	ldi	r18, 0x00	; 0
+ 12c:	48 e0       	ldi	r20, 0x08	; 8
+ 12e:	60 eb       	ldi	r22, 0xB0	; 176
+ 130:	74 e0       	ldi	r23, 0x04	; 4
+ 132:	80 e0       	ldi	r24, 0x00	; 0
+ 134:	90 e0       	ldi	r25, 0x00	; 0
+ 136:	12 d0       	rcall	.+36     	; 0x15c <_Z8InitUARTmhh>
+#include "Headers/light.h"
+#include "Headers/uart_int.h"
+
+int main(void)
+{
+    int i = 0;
+ 138:	00 e0       	ldi	r16, 0x00	; 0
+ 13a:	10 e0       	ldi	r17, 0x00	; 0
+	
+	InitUART(1200, 8, 0);
+	
+    while (1) 
+    {
+		if (i < 1000)
+ 13c:	08 3e       	cpi	r16, 0xE8	; 232
+ 13e:	83 e0       	ldi	r24, 0x03	; 3
+ 140:	18 07       	cpc	r17, r24
+ 142:	24 f4       	brge	.+8      	; 0x14c <main+0x32>
+		{
+			light.on();			
+ 144:	ce 01       	movw	r24, r28
+ 146:	01 96       	adiw	r24, 0x01	; 1
+ 148:	dc df       	rcall	.-72     	; 0x102 <_ZN5Light2onEv>
+ 14a:	03 c0       	rjmp	.+6      	; 0x152 <main+0x38>
+		}
+		else
+		{
+			light.off();
+ 14c:	ce 01       	movw	r24, r28
+ 14e:	01 96       	adiw	r24, 0x01	; 1
+ 150:	de df       	rcall	.-68     	; 0x10e <_ZN5Light3offEv>
+		}
+		
+		SendChar(1);
+ 152:	81 e0       	ldi	r24, 0x01	; 1
+ 154:	39 d0       	rcall	.+114    	; 0x1c8 <_Z8SendCharc>
+ 156:	0f 5f       	subi	r16, 0xFF	; 255
+		
+		i++;
+ 158:	1f 4f       	sbci	r17, 0xFF	; 255
+ 15a:	f0 cf       	rjmp	.-32     	; 0x13c <main+0x22>
+
+0000015c <_Z8InitUARTmhh>:
+	
+	Light light = Light();
+	
+	InitUART(1200, 8, 0);
+	
+    while (1) 
+ 15c:	cf 93       	push	r28
+char ReadChar()
+{
+	while (CharReady() == 0){}
+	//char x = UDR0;
+	return UDR0; //Returner den værdi som er i UDR0
+	}
+ 15e:	c2 2f       	mov	r28, r18
+ 160:	28 e1       	ldi	r18, 0x18	; 24
+ 162:	20 93 c1 00 	sts	0x00C1, r18	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7c00c1>
+ 166:	26 e0       	ldi	r18, 0x06	; 6
+ 168:	20 93 c2 00 	sts	0x00C2, r18	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7c00c2>
+ 16c:	dc 01       	movw	r26, r24
+ 16e:	cb 01       	movw	r24, r22
+ 170:	88 0f       	add	r24, r24
+ 172:	99 1f       	adc	r25, r25
+ 174:	aa 1f       	adc	r26, r26
+ 176:	bb 1f       	adc	r27, r27
+ 178:	88 0f       	add	r24, r24
+ 17a:	99 1f       	adc	r25, r25
+ 17c:	aa 1f       	adc	r26, r26
+ 17e:	bb 1f       	adc	r27, r27
+ 180:	9c 01       	movw	r18, r24
+ 182:	ad 01       	movw	r20, r26
+ 184:	22 0f       	add	r18, r18
+ 186:	33 1f       	adc	r19, r19
+ 188:	44 1f       	adc	r20, r20
+ 18a:	55 1f       	adc	r21, r21
+ 18c:	22 0f       	add	r18, r18
+ 18e:	33 1f       	adc	r19, r19
+ 190:	44 1f       	adc	r20, r20
+ 192:	55 1f       	adc	r21, r21
+ 194:	60 e0       	ldi	r22, 0x00	; 0
+ 196:	74 e2       	ldi	r23, 0x24	; 36
+ 198:	84 ef       	ldi	r24, 0xF4	; 244
+ 19a:	90 e0       	ldi	r25, 0x00	; 0
+ 19c:	1c d0       	rcall	.+56     	; 0x1d6 <__udivmodsi4>
+ 19e:	21 50       	subi	r18, 0x01	; 1
+ 1a0:	31 09       	sbc	r19, r1
+ 1a2:	30 93 c5 00 	sts	0x00C5, r19	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7c00c5>
+ 1a6:	20 93 c4 00 	sts	0x00C4, r18	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7c00c4>
+ 1aa:	c1 11       	cpse	r28, r1
+ 1ac:	06 c0       	rjmp	.+12     	; 0x1ba <_Z8InitUARTmhh+0x5e>
+ 1ae:	e1 ec       	ldi	r30, 0xC1	; 193
+ 1b0:	f0 e0       	ldi	r31, 0x00	; 0
+ 1b2:	80 81       	ld	r24, Z
+ 1b4:	8f 77       	andi	r24, 0x7F	; 127
+ 1b6:	80 83       	st	Z, r24
+ 1b8:	05 c0       	rjmp	.+10     	; 0x1c4 <_Z8InitUARTmhh+0x68>
+ 1ba:	e1 ec       	ldi	r30, 0xC1	; 193
+ 1bc:	f0 e0       	ldi	r31, 0x00	; 0
+ 1be:	80 81       	ld	r24, Z
+ 1c0:	80 68       	ori	r24, 0x80	; 128
+ 1c2:	80 83       	st	Z, r24
+ 1c4:	cf 91       	pop	r28
+ 1c6:	08 95       	ret
+
+000001c8 <_Z8SendCharc>:
+Parameter :
+	Tegn : Character for sending. 
+*************************************************************************/
+void SendChar(char Tegn)
+{
+	while ((UCSR0A & 0b00100000) == 0){}
+ 1c8:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7c00c0>
+ 1cc:	95 ff       	sbrs	r25, 5
+ 1ce:	fc cf       	rjmp	.-8      	; 0x1c8 <_Z8SendCharc>
+   UDR0 = Tegn;
+ 1d0:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7c00c6>
+ 1d4:	08 95       	ret
+
+000001d6 <__udivmodsi4>:
+ 1d6:	a1 e2       	ldi	r26, 0x21	; 33
+ 1d8:	1a 2e       	mov	r1, r26
+ 1da:	aa 1b       	sub	r26, r26
+ 1dc:	bb 1b       	sub	r27, r27
+ 1de:	fd 01       	movw	r30, r26
+ 1e0:	0d c0       	rjmp	.+26     	; 0x1fc <__udivmodsi4_ep>
+
+000001e2 <__udivmodsi4_loop>:
+ 1e2:	aa 1f       	adc	r26, r26
+ 1e4:	bb 1f       	adc	r27, r27
+ 1e6:	ee 1f       	adc	r30, r30
+ 1e8:	ff 1f       	adc	r31, r31
+ 1ea:	a2 17       	cp	r26, r18
+ 1ec:	b3 07       	cpc	r27, r19
+ 1ee:	e4 07       	cpc	r30, r20
+ 1f0:	f5 07       	cpc	r31, r21
+ 1f2:	20 f0       	brcs	.+8      	; 0x1fc <__udivmodsi4_ep>
+ 1f4:	a2 1b       	sub	r26, r18
+ 1f6:	b3 0b       	sbc	r27, r19
+ 1f8:	e4 0b       	sbc	r30, r20
+ 1fa:	f5 0b       	sbc	r31, r21
+
+000001fc <__udivmodsi4_ep>:
+ 1fc:	66 1f       	adc	r22, r22
+ 1fe:	77 1f       	adc	r23, r23
+ 200:	88 1f       	adc	r24, r24
+ 202:	99 1f       	adc	r25, r25
+ 204:	1a 94       	dec	r1
+ 206:	69 f7       	brne	.-38     	; 0x1e2 <__udivmodsi4_loop>
+ 208:	60 95       	com	r22
+ 20a:	70 95       	com	r23
+ 20c:	80 95       	com	r24
+ 20e:	90 95       	com	r25
+ 210:	9b 01       	movw	r18, r22
+ 212:	ac 01       	movw	r20, r24
+ 214:	bd 01       	movw	r22, r26
+ 216:	cf 01       	movw	r24, r30
+ 218:	08 95       	ret
+
+0000021a <_exit>:
+ 21a:	f8 94       	cli
+
+0000021c <__stop_program>:
+ 21c:	ff cf       	rjmp	.-2      	; 0x21c <__stop_program>
