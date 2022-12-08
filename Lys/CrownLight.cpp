@@ -13,7 +13,7 @@ void CrownLight::setCount(char count)
 	{
 		if (i < _count)
 		{
-			_ledDrivers[i].on(128);
+			_ledDrivers[i].on();
 		}
 		else
 		{

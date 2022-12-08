@@ -3,7 +3,7 @@
 #include "Headers/CrownLight.h"
 
 int main(void)
-{
+{	
 	const unsigned char crownLedAmount = 11;
 	
 	LedDriver crownLedDrivers[crownLedAmount] = {
