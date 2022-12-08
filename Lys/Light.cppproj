@@ -149,10 +149,10 @@
     <Compile Include="Headers\CrownLight.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Headers\LedDriver.h">
+    <Compile Include="Headers\DriveLight.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Headers\DriveLight.h">
+    <Compile Include="Headers\LedDriver.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="LedDriver.cpp">

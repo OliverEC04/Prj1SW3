@@ -3,27 +3,29 @@ Light.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800200  00800200  0000015e  2**0
+  0 .data         00000000  00800200  00800200  00000328  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000010a  00000000  00000000  00000054  2**1
+  1 .text         000002d4  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  0000015e  2**0
+  2 .comment      00000030  00000000  00000000  00000328  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000190  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000358  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000020  00000000  00000000  000001d0  2**0
+  4 .debug_aranges 000000c0  00000000  00000000  00000398  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000c38  00000000  00000000  000001f0  2**0
+  5 .debug_info   000018aa  00000000  00000000  00000458  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000b61  00000000  00000000  00000e28  2**0
+  6 .debug_abbrev 000010e8  00000000  00000000  00001d02  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000243  00000000  00000000  00001989  2**0
+  7 .debug_line   0000052b  00000000  00000000  00002dea  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000024  00000000  00000000  00001bcc  2**2
+  8 .debug_frame  00000154  00000000  00000000  00003318  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000556  00000000  00000000  00001bf0  2**0
+  9 .debug_str    000007bd  00000000  00000000  0000346c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000010  00000000  00000000  00002146  2**0
+ 10 .debug_loc    000003be  00000000  00000000  00003c29  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000080  00000000  00000000  00003fe7  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -153,31 +155,356 @@ Disassembly of section .text:
   ee:	cd bf       	out	0x3d, r28	; 61
   f0:	00 e0       	ldi	r16, 0x00	; 0
   f2:	0c bf       	out	0x3c, r16	; 60
-  f4:	02 d0       	rcall	.+4      	; 0xfa <main>
-  f6:	07 c0       	rjmp	.+14     	; 0x106 <_exit>
+  f4:	8d d0       	rcall	.+282    	; 0x210 <main>
+  f6:	ec c0       	rjmp	.+472    	; 0x2d0 <_exit>
 
 000000f8 <__bad_interrupt>:
   f8:	83 cf       	rjmp	.-250    	; 0x0 <__vectors>
 
-000000fa <main>:
+000000fa <_ZN10CrownLightC1EP9LedDriverc>:
+
+void CrownLight::countDown()
+{
+	if (_count > 0)
+	{
+		setCount(--_count);	
+  fa:	fc 01       	movw	r30, r24
+  fc:	71 83       	std	Z+1, r23	; 0x01
+  fe:	60 83       	st	Z, r22
+ 100:	42 83       	std	Z+2, r20	; 0x02
+ 102:	13 82       	std	Z+3, r1	; 0x03
+ 104:	08 95       	ret
+
+00000106 <_ZN10CrownLight8setCountEc>:
+ 106:	0f 93       	push	r16
+ 108:	1f 93       	push	r17
+ 10a:	cf 93       	push	r28
+ 10c:	8c 01       	movw	r16, r24
+ 10e:	fc 01       	movw	r30, r24
+ 110:	63 83       	std	Z+3, r22	; 0x03
+ 112:	c0 e0       	ldi	r28, 0x00	; 0
+ 114:	f8 01       	movw	r30, r16
+ 116:	82 81       	ldd	r24, Z+2	; 0x02
+ 118:	c8 17       	cp	r28, r24
+ 11a:	d0 f4       	brcc	.+52     	; 0x150 <_ZN10CrownLight8setCountEc+0x4a>
+ 11c:	83 81       	ldd	r24, Z+3	; 0x03
+ 11e:	c8 17       	cp	r28, r24
+ 120:	58 f4       	brcc	.+22     	; 0x138 <_ZN10CrownLight8setCountEc+0x32>
+ 122:	20 81       	ld	r18, Z
+ 124:	31 81       	ldd	r19, Z+1	; 0x01
+ 126:	8c 2f       	mov	r24, r28
+ 128:	90 e0       	ldi	r25, 0x00	; 0
+ 12a:	88 0f       	add	r24, r24
+ 12c:	99 1f       	adc	r25, r25
+ 12e:	60 e8       	ldi	r22, 0x80	; 128
+ 130:	82 0f       	add	r24, r18
+ 132:	93 1f       	adc	r25, r19
+ 134:	42 d0       	rcall	.+132    	; 0x1ba <_ZN9LedDriver2onEh>
+ 136:	0a c0       	rjmp	.+20     	; 0x14c <_ZN10CrownLight8setCountEc+0x46>
+ 138:	f8 01       	movw	r30, r16
+ 13a:	20 81       	ld	r18, Z
+ 13c:	31 81       	ldd	r19, Z+1	; 0x01
+ 13e:	8c 2f       	mov	r24, r28
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	88 0f       	add	r24, r24
+ 144:	99 1f       	adc	r25, r25
+ 146:	82 0f       	add	r24, r18
+ 148:	93 1f       	adc	r25, r19
+ 14a:	1e d0       	rcall	.+60     	; 0x188 <_ZN9LedDriver3offEv>
+ 14c:	cf 5f       	subi	r28, 0xFF	; 255
+ 14e:	e2 cf       	rjmp	.-60     	; 0x114 <_ZN10CrownLight8setCountEc+0xe>
+ 150:	cf 91       	pop	r28
+ 152:	1f 91       	pop	r17
+ 154:	0f 91       	pop	r16
+ 156:	08 95       	ret
+
+00000158 <_ZN10CrownLight7countUpEv>:
+	}
+}
+
+void CrownLight::countUp()
+{
+	if (_count < _ledAmount)
+ 158:	fc 01       	movw	r30, r24
+ 15a:	63 81       	ldd	r22, Z+3	; 0x03
+ 15c:	22 81       	ldd	r18, Z+2	; 0x02
+ 15e:	62 17       	cp	r22, r18
+ 160:	18 f4       	brcc	.+6      	; 0x168 <_ZN10CrownLight7countUpEv+0x10>
+	{
+		setCount(++_count);
+ 162:	6f 5f       	subi	r22, 0xFF	; 255
+ 164:	63 83       	std	Z+3, r22	; 0x03
+ 166:	cf cf       	rjmp	.-98     	; 0x106 <_ZN10CrownLight8setCountEc>
+ 168:	08 95       	ret
+
+0000016a <_ZN9LedDriverC1Ehh>:
+#include "Headers/LedDriver.h"
+
+LedDriver::LedDriver(unsigned char port, unsigned char bit)
+: _port(port), _bit(bit)
+ 16a:	fc 01       	movw	r30, r24
+ 16c:	60 83       	st	Z, r22
+ 16e:	41 83       	std	Z+1, r20	; 0x01
+{	
+	switch(_port)
+ 170:	62 34       	cpi	r22, 0x42	; 66
+ 172:	19 f0       	breq	.+6      	; 0x17a <_ZN9LedDriverC1Ehh+0x10>
+ 174:	68 34       	cpi	r22, 0x48	; 72
+ 176:	21 f0       	breq	.+8      	; 0x180 <_ZN9LedDriverC1Ehh+0x16>
+ 178:	08 95       	ret
+	{
+		case 'B':
+			DDRB = 0xFF;
+ 17a:	8f ef       	ldi	r24, 0xFF	; 255
+ 17c:	84 b9       	out	0x04, r24	; 4
+			break;
+ 17e:	08 95       	ret
+		
+		case 'H':
+			DDRH = 0xFF;
+ 180:	8f ef       	ldi	r24, 0xFF	; 255
+ 182:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <__TEXT_REGION_LENGTH__+0x7c0101>
+ 186:	08 95       	ret
+
+00000188 <_ZN9LedDriver3offEv>:
+	}
+}
+
+void LedDriver::off()
+{
+	unsigned char pattern = 0b11111110 << _bit;
+ 188:	2e ef       	ldi	r18, 0xFE	; 254
+ 18a:	30 e0       	ldi	r19, 0x00	; 0
+ 18c:	fc 01       	movw	r30, r24
+ 18e:	01 80       	ldd	r0, Z+1	; 0x01
+ 190:	02 c0       	rjmp	.+4      	; 0x196 <_ZN9LedDriver3offEv+0xe>
+ 192:	22 0f       	add	r18, r18
+ 194:	33 1f       	adc	r19, r19
+ 196:	0a 94       	dec	r0
+ 198:	e2 f7       	brpl	.-8      	; 0x192 <_ZN9LedDriver3offEv+0xa>
+	
+	switch(_port)
+ 19a:	80 81       	ld	r24, Z
+ 19c:	82 34       	cpi	r24, 0x42	; 66
+ 19e:	19 f0       	breq	.+6      	; 0x1a6 <_ZN9LedDriver3offEv+0x1e>
+ 1a0:	88 34       	cpi	r24, 0x48	; 72
+ 1a2:	29 f0       	breq	.+10     	; 0x1ae <_ZN9LedDriver3offEv+0x26>
+ 1a4:	08 95       	ret
+	{
+		case 'B':
+			PORTB &= pattern;
+ 1a6:	85 b1       	in	r24, 0x05	; 5
+ 1a8:	28 23       	and	r18, r24
+ 1aa:	25 b9       	out	0x05, r18	; 5
+			break;
+ 1ac:	08 95       	ret
+		
+		case 'H':
+			PORTH &= pattern;
+ 1ae:	e2 e0       	ldi	r30, 0x02	; 2
+ 1b0:	f1 e0       	ldi	r31, 0x01	; 1
+ 1b2:	80 81       	ld	r24, Z
+ 1b4:	28 23       	and	r18, r24
+ 1b6:	20 83       	st	Z, r18
+ 1b8:	08 95       	ret
+
+000001ba <_ZN9LedDriver2onEh>:
+	}
+}
+
+void LedDriver::on(unsigned char intensity)
+{
+	unsigned char pattern = 0b00000001 << _bit;
+ 1ba:	21 e0       	ldi	r18, 0x01	; 1
+ 1bc:	30 e0       	ldi	r19, 0x00	; 0
+ 1be:	fc 01       	movw	r30, r24
+ 1c0:	01 80       	ldd	r0, Z+1	; 0x01
+ 1c2:	02 c0       	rjmp	.+4      	; 0x1c8 <_ZN9LedDriver2onEh+0xe>
+ 1c4:	22 0f       	add	r18, r18
+ 1c6:	33 1f       	adc	r19, r19
+ 1c8:	0a 94       	dec	r0
+ 1ca:	e2 f7       	brpl	.-8      	; 0x1c4 <_ZN9LedDriver2onEh+0xa>
+	
+	switch(_port)
+ 1cc:	80 81       	ld	r24, Z
+ 1ce:	82 34       	cpi	r24, 0x42	; 66
+ 1d0:	19 f0       	breq	.+6      	; 0x1d8 <_ZN9LedDriver2onEh+0x1e>
+ 1d2:	88 34       	cpi	r24, 0x48	; 72
+ 1d4:	29 f0       	breq	.+10     	; 0x1e0 <_ZN9LedDriver2onEh+0x26>
+ 1d6:	08 95       	ret
+	{
+		case 'B':
+			PORTB |= pattern;
+ 1d8:	85 b1       	in	r24, 0x05	; 5
+ 1da:	28 2b       	or	r18, r24
+ 1dc:	25 b9       	out	0x05, r18	; 5
+			break;
+ 1de:	08 95       	ret
+		
+		case 'H':
+			PORTH |= pattern;
+ 1e0:	e2 e0       	ldi	r30, 0x02	; 2
+ 1e2:	f1 e0       	ldi	r31, 0x01	; 1
+ 1e4:	80 81       	ld	r24, Z
+ 1e6:	28 2b       	or	r18, r24
+ 1e8:	20 83       	st	Z, r18
+ 1ea:	08 95       	ret
+
+000001ec <_ZN10DriveLightC1E9LedDriverS0_>:
+
+void DriveLight::off()
+{
+	_frontLedDriver.off();
+	_backLedDriver.off();
+}
+ 1ec:	fc 01       	movw	r30, r24
+ 1ee:	71 83       	std	Z+1, r23	; 0x01
+ 1f0:	60 83       	st	Z, r22
+ 1f2:	53 83       	std	Z+3, r21	; 0x03
+ 1f4:	42 83       	std	Z+2, r20	; 0x02
+ 1f6:	08 95       	ret
+
+000001f8 <_ZN10DriveLight5driveEv>:
+
+void DriveLight::drive()
+{
+ 1f8:	cf 93       	push	r28
+ 1fa:	df 93       	push	r29
+ 1fc:	ec 01       	movw	r28, r24
+	_frontLedDriver.on(85);
+ 1fe:	65 e5       	ldi	r22, 0x55	; 85
+ 200:	dc df       	rcall	.-72     	; 0x1ba <_ZN9LedDriver2onEh>
+	_backLedDriver.on(42);
+ 202:	6a e2       	ldi	r22, 0x2A	; 42
+ 204:	ce 01       	movw	r24, r28
+ 206:	02 96       	adiw	r24, 0x02	; 2
+ 208:	d8 df       	rcall	.-80     	; 0x1ba <_ZN9LedDriver2onEh>
+}
+ 20a:	df 91       	pop	r29
+ 20c:	cf 91       	pop	r28
+ 20e:	08 95       	ret
+
+00000210 <main>:
+#include "Headers/LedDriver.h"
+#include "Headers/DriveLight.h"
+#include "Headers/CrownLight.h"
+
 int main(void)
 {
-	//Light light = Light();
-	//light.off();
+ 210:	cf 93       	push	r28
+ 212:	df 93       	push	r29
+ 214:	cd b7       	in	r28, 0x3d	; 61
+ 216:	de b7       	in	r29, 0x3e	; 62
+ 218:	a2 97       	sbiw	r28, 0x22	; 34
+ 21a:	0f b6       	in	r0, 0x3f	; 63
+ 21c:	f8 94       	cli
+ 21e:	de bf       	out	0x3e, r29	; 62
+ 220:	0f be       	out	0x3f, r0	; 63
+ 222:	cd bf       	out	0x3d, r28	; 61
+		LedDriver('B', 1),	
+		LedDriver('B', 1),	
+		LedDriver('B', 1),	
+		LedDriver('B', 1),	
+		LedDriver('B', 1)
+	};
+ 224:	41 e0       	ldi	r20, 0x01	; 1
+ 226:	62 e4       	ldi	r22, 0x42	; 66
+ 228:	ce 01       	movw	r24, r28
+ 22a:	05 96       	adiw	r24, 0x05	; 5
+ 22c:	9e df       	rcall	.-196    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 22e:	41 e0       	ldi	r20, 0x01	; 1
+ 230:	62 e4       	ldi	r22, 0x42	; 66
+ 232:	ce 01       	movw	r24, r28
+ 234:	07 96       	adiw	r24, 0x07	; 7
+ 236:	99 df       	rcall	.-206    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 238:	41 e0       	ldi	r20, 0x01	; 1
+ 23a:	62 e4       	ldi	r22, 0x42	; 66
+ 23c:	ce 01       	movw	r24, r28
+ 23e:	09 96       	adiw	r24, 0x09	; 9
+ 240:	94 df       	rcall	.-216    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 242:	41 e0       	ldi	r20, 0x01	; 1
+ 244:	62 e4       	ldi	r22, 0x42	; 66
+ 246:	ce 01       	movw	r24, r28
+ 248:	0b 96       	adiw	r24, 0x0b	; 11
+ 24a:	8f df       	rcall	.-226    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 24c:	41 e0       	ldi	r20, 0x01	; 1
+ 24e:	62 e4       	ldi	r22, 0x42	; 66
+ 250:	ce 01       	movw	r24, r28
+ 252:	0d 96       	adiw	r24, 0x0d	; 13
+ 254:	8a df       	rcall	.-236    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 256:	41 e0       	ldi	r20, 0x01	; 1
+ 258:	62 e4       	ldi	r22, 0x42	; 66
+ 25a:	ce 01       	movw	r24, r28
+ 25c:	0f 96       	adiw	r24, 0x0f	; 15
+ 25e:	85 df       	rcall	.-246    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 260:	41 e0       	ldi	r20, 0x01	; 1
+ 262:	62 e4       	ldi	r22, 0x42	; 66
+ 264:	ce 01       	movw	r24, r28
+ 266:	41 96       	adiw	r24, 0x11	; 17
+ 268:	80 df       	rcall	.-256    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 26a:	41 e0       	ldi	r20, 0x01	; 1
+ 26c:	62 e4       	ldi	r22, 0x42	; 66
+ 26e:	ce 01       	movw	r24, r28
+ 270:	43 96       	adiw	r24, 0x13	; 19
+ 272:	7b df       	rcall	.-266    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 274:	41 e0       	ldi	r20, 0x01	; 1
+ 276:	62 e4       	ldi	r22, 0x42	; 66
+ 278:	ce 01       	movw	r24, r28
+ 27a:	45 96       	adiw	r24, 0x15	; 21
+ 27c:	76 df       	rcall	.-276    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 27e:	41 e0       	ldi	r20, 0x01	; 1
+ 280:	62 e4       	ldi	r22, 0x42	; 66
+ 282:	ce 01       	movw	r24, r28
+ 284:	47 96       	adiw	r24, 0x17	; 23
+ 286:	71 df       	rcall	.-286    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 288:	41 e0       	ldi	r20, 0x01	; 1
+ 28a:	62 e4       	ldi	r22, 0x42	; 66
+ 28c:	ce 01       	movw	r24, r28
+ 28e:	49 96       	adiw	r24, 0x19	; 25
+ 290:	6c df       	rcall	.-296    	; 0x16a <_ZN9LedDriverC1Ehh>
 	
-	DDRH = 0xFF;
-  fa:	8f ef       	ldi	r24, 0xFF	; 255
-  fc:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <__TEXT_REGION_LENGTH__+0x7c0101>
+	DriveLight driveLight = DriveLight(LedDriver('H', 6), LedDriver('H', 5));
+ 292:	45 e0       	ldi	r20, 0x05	; 5
+ 294:	68 e4       	ldi	r22, 0x48	; 72
+ 296:	ce 01       	movw	r24, r28
+ 298:	03 96       	adiw	r24, 0x03	; 3
+ 29a:	67 df       	rcall	.-306    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 29c:	46 e0       	ldi	r20, 0x06	; 6
+ 29e:	68 e4       	ldi	r22, 0x48	; 72
+ 2a0:	ce 01       	movw	r24, r28
+ 2a2:	01 96       	adiw	r24, 0x01	; 1
+ 2a4:	62 df       	rcall	.-316    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 2a6:	4b 81       	ldd	r20, Y+3	; 0x03
+ 2a8:	5c 81       	ldd	r21, Y+4	; 0x04
+ 2aa:	69 81       	ldd	r22, Y+1	; 0x01
+ 2ac:	7a 81       	ldd	r23, Y+2	; 0x02
+ 2ae:	ce 01       	movw	r24, r28
+ 2b0:	4b 96       	adiw	r24, 0x1b	; 27
+ 2b2:	9c df       	rcall	.-200    	; 0x1ec <_ZN10DriveLightC1E9LedDriverS0_>
+	CrownLight crownLight = CrownLight(ledDrivers, crownLedAmount);
+ 2b4:	4b e0       	ldi	r20, 0x0B	; 11
+ 2b6:	be 01       	movw	r22, r28
+ 2b8:	6b 5f       	subi	r22, 0xFB	; 251
+ 2ba:	7f 4f       	sbci	r23, 0xFF	; 255
+ 2bc:	ce 01       	movw	r24, r28
+ 2be:	4f 96       	adiw	r24, 0x1f	; 31
+ 2c0:	1c df       	rcall	.-456    	; 0xfa <_ZN10CrownLightC1EP9LedDriverc>
+ 2c2:	ce 01       	movw	r24, r28
 	
-    while (1) 
-    {
-		//light.update();
-		PORTH = 0x00;
- 100:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <__TEXT_REGION_LENGTH__+0x7c0102>
- 104:	fd cf       	rjmp	.-6      	; 0x100 <main+0x6>
+	driveLight.drive();
+ 2c4:	4b 96       	adiw	r24, 0x1b	; 27
+ 2c6:	98 df       	rcall	.-208    	; 0x1f8 <_ZN10DriveLight5driveEv>
+ 2c8:	ce 01       	movw	r24, r28
+ 2ca:	4f 96       	adiw	r24, 0x1f	; 31
+	
+	while(1)
+	{
+		crownLight.countUp();
+ 2cc:	45 df       	rcall	.-374    	; 0x158 <_ZN10CrownLight7countUpEv>
+ 2ce:	fc cf       	rjmp	.-8      	; 0x2c8 <main+0xb8>
 
-00000106 <_exit>:
- 106:	f8 94       	cli
+000002d0 <_exit>:
+ 2d0:	f8 94       	cli
 
-00000108 <__stop_program>:
- 108:	ff cf       	rjmp	.-2      	; 0x108 <__stop_program>
+000002d2 <__stop_program>:
+ 2d2:	ff cf       	rjmp	.-2      	; 0x2d2 <__stop_program>

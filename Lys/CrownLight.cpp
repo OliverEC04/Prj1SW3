@@ -1,9 +1,8 @@
 #include "Headers/CrownLight.h"
 
-CrownLight::CrownLight(LedDriver[_ledAmount] ledDrivers)
+CrownLight::CrownLight(LedDriver* ledDrivers, char ledAmount)
+: _ledDrivers(ledDrivers), _ledAmount(ledAmount), _count(0)
 {
-	_ledDrivers = ledDrivers;
-	_count = 0;
 }
 
 void CrownLight::setCount(char count)
@@ -14,7 +13,7 @@ void CrownLight::setCount(char count)
 	{
 		if (i < _count)
 		{
-			_ledDrivers[i].on(); // TODO: set intensity to 128
+			_ledDrivers[i].on(128);
 		}
 		else
 		{
@@ -25,10 +24,16 @@ void CrownLight::setCount(char count)
 
 void CrownLight::countDown()
 {
-	setCount(_count--);
+	if (_count > 0)
+	{
+		setCount(--_count);	
+	}
 }
 
 void CrownLight::countUp()
 {
-	setCount(_count++);
+	if (_count < _ledAmount)
+	{
+		setCount(++_count);
+	}
 }

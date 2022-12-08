@@ -1,3 +1,4 @@
+#pragma once
 #include <avr/io.h>
 
 class LedDriver
@@ -10,4 +11,4 @@ class LedDriver
 	private:
 		unsigned char _port;
 		unsigned char _bit;
-}
+};

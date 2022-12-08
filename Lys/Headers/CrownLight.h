@@ -1,15 +1,16 @@
+#pragma once
 #include "LedDriver.h"
 
 class CrownLight
 {
 	public:
-		CrownLight(LedDriver[_ledAmount] ledDrivers);
+		CrownLight(LedDriver* ledDrivers, char ledAmount);
 		void setCount(char count);
 		void countDown();
 		void countUp();
 		
 	private:
-		char _ledAmount = 11;
-		LedDriver[_ledAmount] _ledDrivers;
+		LedDriver* _ledDrivers;
+		char _ledAmount;
 		char _count;
 };

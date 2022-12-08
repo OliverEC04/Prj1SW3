@@ -1,3 +1,4 @@
+#pragma once
 #include "LedDriver.h"
 
 class DriveLight

@@ -1,10 +1,8 @@
 #include "Headers/LedDriver.h"
 
 LedDriver::LedDriver(unsigned char port, unsigned char bit)
-{
-	_port = port;
-	_bit = bit;
-	
+: _port(port), _bit(bit)
+{	
 	switch(_port)
 	{
 		case 'B':
@@ -33,7 +31,7 @@ void LedDriver::off()
 	}
 }
 
-void LedDriver::on(unsigned char intensity = 255)
+void LedDriver::on(unsigned char intensity)
 {
 	unsigned char pattern = 0b00000001 << _bit;
 	
