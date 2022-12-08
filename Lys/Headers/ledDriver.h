@@ -5,6 +5,6 @@ class LedDriver
 		LedDriver(int port, unsigned char bit);
 		
 	private:
-		 _port;
 		unsigned char _bit;
-};
+}
+*/

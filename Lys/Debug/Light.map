@@ -9,6 +9,12 @@ Discarded input sections
 
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o
  .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o
+ .text          0x00000000        0x0 LedDriver.o
+ .data          0x00000000        0x0 LedDriver.o
+ .bss           0x00000000        0x0 LedDriver.o
+ .debug_line    0x00000000        0x0 LedDriver.o
+ .debug_str     0x00000000      0x13d LedDriver.o
+ .comment       0x00000000       0x31 LedDriver.o
  .text          0x00000000        0x0 Light.o
  .data          0x00000000        0x0 Light.o
  .bss           0x00000000        0x0 Light.o
@@ -66,6 +72,7 @@ Linker script and memory map
 
 Address of section .data set to 0x800200
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o
+LOAD LedDriver.o
 LOAD Light.o
 LOAD main.o
 START GROUP
