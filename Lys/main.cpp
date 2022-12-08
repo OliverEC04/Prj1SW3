@@ -1,14 +1,29 @@
-#include <avr/io.h>
-#include "Headers/light.h"
+#include "Headers/DriveLight.h"
+#include "Headers/CrownLight.h"
 
-int main(void)
-{
-	Light light = Light();
-	light.on();
+void main()
+{		
+	DriveLight driveLight = DriveLight(LedDriver('H', 6), LedDriver('H', 5));
+	/*
+	CrownLight crownLight = CrownLight({
+		LedDriver(),
+		LedDriver(),
+		LedDriver(),
+		LedDriver(),
+		LedDriver(),
+		LedDriver(),
+		LedDriver(),
+		LedDriver(),
+		LedDriver(),
+		LedDriver(),
+		LedDriver()
+	});
+	*/
 	
-    while (1) 
-    {
-		light.update();
-    }
+	driveLight.drive();
+	
+	while(1)
+	{
+		
+	}
 }
-

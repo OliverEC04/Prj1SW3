@@ -143,16 +143,22 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Headers\ledDriver.h">
+    <Compile Include="CrownLight.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Headers\Light.h">
+    <Compile Include="Headers\CrownLight.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Headers\LedDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Headers\DriveLight.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="LedDriver.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Light.cpp">
+    <Compile Include="DriveLight.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">
