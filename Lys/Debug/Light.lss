@@ -3,29 +3,29 @@ Light.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800200  00800200  00000328  2**0
+  0 .data         00000000  00800200  00800200  00000332  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000002d4  00000000  00000000  00000054  2**1
+  1 .text         000002de  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  00000328  2**0
+  2 .comment      00000030  00000000  00000000  00000332  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000358  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000364  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 000000c0  00000000  00000000  00000398  2**0
+  4 .debug_aranges 000000c0  00000000  00000000  000003a4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   000018aa  00000000  00000000  00000458  2**0
+  5 .debug_info   000018a8  00000000  00000000  00000464  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000010e8  00000000  00000000  00001d02  2**0
+  6 .debug_abbrev 000010db  00000000  00000000  00001d0c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000052b  00000000  00000000  00002dea  2**0
+  7 .debug_line   00000539  00000000  00000000  00002de7  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000154  00000000  00000000  00003318  2**2
+  8 .debug_frame  00000154  00000000  00000000  00003320  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000007bd  00000000  00000000  0000346c  2**0
+  9 .debug_str    000007cd  00000000  00000000  00003474  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000003be  00000000  00000000  00003c29  2**0
+ 10 .debug_loc    000003e6  00000000  00000000  00003c41  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000080  00000000  00000000  00003fe7  2**0
+ 11 .debug_ranges 00000080  00000000  00000000  00004027  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -155,8 +155,8 @@ Disassembly of section .text:
   ee:	cd bf       	out	0x3d, r28	; 61
   f0:	00 e0       	ldi	r16, 0x00	; 0
   f2:	0c bf       	out	0x3c, r16	; 60
-  f4:	8d d0       	rcall	.+282    	; 0x210 <main>
-  f6:	ec c0       	rjmp	.+472    	; 0x2d0 <_exit>
+  f4:	92 d0       	rcall	.+292    	; 0x21a <main>
+  f6:	f1 c0       	rjmp	.+482    	; 0x2da <_exit>
 
 000000f8 <__bad_interrupt>:
   f8:	83 cf       	rjmp	.-250    	; 0x0 <__vectors>
@@ -196,7 +196,7 @@ void CrownLight::countDown()
  128:	90 e0       	ldi	r25, 0x00	; 0
  12a:	88 0f       	add	r24, r24
  12c:	99 1f       	adc	r25, r25
- 12e:	60 e8       	ldi	r22, 0x80	; 128
+ 12e:	6f ef       	ldi	r22, 0xFF	; 255
  130:	82 0f       	add	r24, r18
  132:	93 1f       	adc	r25, r19
  134:	42 d0       	rcall	.+132    	; 0x1ba <_ZN9LedDriver2onEh>
@@ -362,149 +362,154 @@ void DriveLight::off()
  1f0:	60 83       	st	Z, r22
  1f2:	53 83       	std	Z+3, r21	; 0x03
  1f4:	42 83       	std	Z+2, r20	; 0x02
- 1f6:	08 95       	ret
+ 1f6:	84 b5       	in	r24, 0x24	; 36
+ 1f8:	8c 7f       	andi	r24, 0xFC	; 252
+ 1fa:	84 bd       	out	0x24, r24	; 36
+ 1fc:	82 e0       	ldi	r24, 0x02	; 2
+ 1fe:	85 bd       	out	0x25, r24	; 37
+ 200:	08 95       	ret
 
-000001f8 <_ZN10DriveLight5driveEv>:
+00000202 <_ZN10DriveLight5driveEv>:
 
 void DriveLight::drive()
 {
- 1f8:	cf 93       	push	r28
- 1fa:	df 93       	push	r29
- 1fc:	ec 01       	movw	r28, r24
+ 202:	cf 93       	push	r28
+ 204:	df 93       	push	r29
+ 206:	ec 01       	movw	r28, r24
 	_frontLedDriver.on(85);
- 1fe:	65 e5       	ldi	r22, 0x55	; 85
- 200:	dc df       	rcall	.-72     	; 0x1ba <_ZN9LedDriver2onEh>
+ 208:	65 e5       	ldi	r22, 0x55	; 85
+ 20a:	d7 df       	rcall	.-82     	; 0x1ba <_ZN9LedDriver2onEh>
 	_backLedDriver.on(42);
- 202:	6a e2       	ldi	r22, 0x2A	; 42
- 204:	ce 01       	movw	r24, r28
- 206:	02 96       	adiw	r24, 0x02	; 2
- 208:	d8 df       	rcall	.-80     	; 0x1ba <_ZN9LedDriver2onEh>
+ 20c:	6a e2       	ldi	r22, 0x2A	; 42
+ 20e:	ce 01       	movw	r24, r28
+ 210:	02 96       	adiw	r24, 0x02	; 2
+ 212:	d3 df       	rcall	.-90     	; 0x1ba <_ZN9LedDriver2onEh>
 }
- 20a:	df 91       	pop	r29
- 20c:	cf 91       	pop	r28
- 20e:	08 95       	ret
+ 214:	df 91       	pop	r29
+ 216:	cf 91       	pop	r28
+ 218:	08 95       	ret
 
-00000210 <main>:
+0000021a <main>:
 #include "Headers/LedDriver.h"
 #include "Headers/DriveLight.h"
 #include "Headers/CrownLight.h"
 
 int main(void)
-{
- 210:	cf 93       	push	r28
- 212:	df 93       	push	r29
- 214:	cd b7       	in	r28, 0x3d	; 61
- 216:	de b7       	in	r29, 0x3e	; 62
- 218:	a2 97       	sbiw	r28, 0x22	; 34
- 21a:	0f b6       	in	r0, 0x3f	; 63
- 21c:	f8 94       	cli
- 21e:	de bf       	out	0x3e, r29	; 62
- 220:	0f be       	out	0x3f, r0	; 63
- 222:	cd bf       	out	0x3d, r28	; 61
+{	
+ 21a:	cf 93       	push	r28
+ 21c:	df 93       	push	r29
+ 21e:	cd b7       	in	r28, 0x3d	; 61
+ 220:	de b7       	in	r29, 0x3e	; 62
+ 222:	a2 97       	sbiw	r28, 0x22	; 34
+ 224:	0f b6       	in	r0, 0x3f	; 63
+ 226:	f8 94       	cli
+ 228:	de bf       	out	0x3e, r29	; 62
+ 22a:	0f be       	out	0x3f, r0	; 63
+ 22c:	cd bf       	out	0x3d, r28	; 61
 		LedDriver('B', 1),	
 		LedDriver('B', 1),	
 		LedDriver('B', 1),	
 		LedDriver('B', 1),	
 		LedDriver('B', 1)
 	};
- 224:	41 e0       	ldi	r20, 0x01	; 1
- 226:	62 e4       	ldi	r22, 0x42	; 66
- 228:	ce 01       	movw	r24, r28
- 22a:	05 96       	adiw	r24, 0x05	; 5
- 22c:	9e df       	rcall	.-196    	; 0x16a <_ZN9LedDriverC1Ehh>
  22e:	41 e0       	ldi	r20, 0x01	; 1
  230:	62 e4       	ldi	r22, 0x42	; 66
  232:	ce 01       	movw	r24, r28
- 234:	07 96       	adiw	r24, 0x07	; 7
+ 234:	05 96       	adiw	r24, 0x05	; 5
  236:	99 df       	rcall	.-206    	; 0x16a <_ZN9LedDriverC1Ehh>
  238:	41 e0       	ldi	r20, 0x01	; 1
  23a:	62 e4       	ldi	r22, 0x42	; 66
  23c:	ce 01       	movw	r24, r28
- 23e:	09 96       	adiw	r24, 0x09	; 9
+ 23e:	07 96       	adiw	r24, 0x07	; 7
  240:	94 df       	rcall	.-216    	; 0x16a <_ZN9LedDriverC1Ehh>
  242:	41 e0       	ldi	r20, 0x01	; 1
  244:	62 e4       	ldi	r22, 0x42	; 66
  246:	ce 01       	movw	r24, r28
- 248:	0b 96       	adiw	r24, 0x0b	; 11
+ 248:	09 96       	adiw	r24, 0x09	; 9
  24a:	8f df       	rcall	.-226    	; 0x16a <_ZN9LedDriverC1Ehh>
  24c:	41 e0       	ldi	r20, 0x01	; 1
  24e:	62 e4       	ldi	r22, 0x42	; 66
  250:	ce 01       	movw	r24, r28
- 252:	0d 96       	adiw	r24, 0x0d	; 13
+ 252:	0b 96       	adiw	r24, 0x0b	; 11
  254:	8a df       	rcall	.-236    	; 0x16a <_ZN9LedDriverC1Ehh>
  256:	41 e0       	ldi	r20, 0x01	; 1
  258:	62 e4       	ldi	r22, 0x42	; 66
  25a:	ce 01       	movw	r24, r28
- 25c:	0f 96       	adiw	r24, 0x0f	; 15
+ 25c:	0d 96       	adiw	r24, 0x0d	; 13
  25e:	85 df       	rcall	.-246    	; 0x16a <_ZN9LedDriverC1Ehh>
  260:	41 e0       	ldi	r20, 0x01	; 1
  262:	62 e4       	ldi	r22, 0x42	; 66
  264:	ce 01       	movw	r24, r28
- 266:	41 96       	adiw	r24, 0x11	; 17
+ 266:	0f 96       	adiw	r24, 0x0f	; 15
  268:	80 df       	rcall	.-256    	; 0x16a <_ZN9LedDriverC1Ehh>
  26a:	41 e0       	ldi	r20, 0x01	; 1
  26c:	62 e4       	ldi	r22, 0x42	; 66
  26e:	ce 01       	movw	r24, r28
- 270:	43 96       	adiw	r24, 0x13	; 19
+ 270:	41 96       	adiw	r24, 0x11	; 17
  272:	7b df       	rcall	.-266    	; 0x16a <_ZN9LedDriverC1Ehh>
  274:	41 e0       	ldi	r20, 0x01	; 1
  276:	62 e4       	ldi	r22, 0x42	; 66
  278:	ce 01       	movw	r24, r28
- 27a:	45 96       	adiw	r24, 0x15	; 21
+ 27a:	43 96       	adiw	r24, 0x13	; 19
  27c:	76 df       	rcall	.-276    	; 0x16a <_ZN9LedDriverC1Ehh>
  27e:	41 e0       	ldi	r20, 0x01	; 1
  280:	62 e4       	ldi	r22, 0x42	; 66
  282:	ce 01       	movw	r24, r28
- 284:	47 96       	adiw	r24, 0x17	; 23
+ 284:	45 96       	adiw	r24, 0x15	; 21
  286:	71 df       	rcall	.-286    	; 0x16a <_ZN9LedDriverC1Ehh>
  288:	41 e0       	ldi	r20, 0x01	; 1
  28a:	62 e4       	ldi	r22, 0x42	; 66
  28c:	ce 01       	movw	r24, r28
- 28e:	49 96       	adiw	r24, 0x19	; 25
+ 28e:	47 96       	adiw	r24, 0x17	; 23
  290:	6c df       	rcall	.-296    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 292:	41 e0       	ldi	r20, 0x01	; 1
+ 294:	62 e4       	ldi	r22, 0x42	; 66
+ 296:	ce 01       	movw	r24, r28
+ 298:	49 96       	adiw	r24, 0x19	; 25
+ 29a:	67 df       	rcall	.-306    	; 0x16a <_ZN9LedDriverC1Ehh>
 	
 	DriveLight driveLight = DriveLight(LedDriver('H', 6), LedDriver('H', 5));
- 292:	45 e0       	ldi	r20, 0x05	; 5
- 294:	68 e4       	ldi	r22, 0x48	; 72
- 296:	ce 01       	movw	r24, r28
- 298:	03 96       	adiw	r24, 0x03	; 3
- 29a:	67 df       	rcall	.-306    	; 0x16a <_ZN9LedDriverC1Ehh>
- 29c:	46 e0       	ldi	r20, 0x06	; 6
+ 29c:	45 e0       	ldi	r20, 0x05	; 5
  29e:	68 e4       	ldi	r22, 0x48	; 72
  2a0:	ce 01       	movw	r24, r28
- 2a2:	01 96       	adiw	r24, 0x01	; 1
+ 2a2:	03 96       	adiw	r24, 0x03	; 3
  2a4:	62 df       	rcall	.-316    	; 0x16a <_ZN9LedDriverC1Ehh>
- 2a6:	4b 81       	ldd	r20, Y+3	; 0x03
- 2a8:	5c 81       	ldd	r21, Y+4	; 0x04
- 2aa:	69 81       	ldd	r22, Y+1	; 0x01
- 2ac:	7a 81       	ldd	r23, Y+2	; 0x02
- 2ae:	ce 01       	movw	r24, r28
- 2b0:	4b 96       	adiw	r24, 0x1b	; 27
- 2b2:	9c df       	rcall	.-200    	; 0x1ec <_ZN10DriveLightC1E9LedDriverS0_>
-	CrownLight crownLight = CrownLight(ledDrivers, crownLedAmount);
- 2b4:	4b e0       	ldi	r20, 0x0B	; 11
- 2b6:	be 01       	movw	r22, r28
- 2b8:	6b 5f       	subi	r22, 0xFB	; 251
- 2ba:	7f 4f       	sbci	r23, 0xFF	; 255
- 2bc:	ce 01       	movw	r24, r28
- 2be:	4f 96       	adiw	r24, 0x1f	; 31
- 2c0:	1c df       	rcall	.-456    	; 0xfa <_ZN10CrownLightC1EP9LedDriverc>
- 2c2:	ce 01       	movw	r24, r28
+ 2a6:	46 e0       	ldi	r20, 0x06	; 6
+ 2a8:	68 e4       	ldi	r22, 0x48	; 72
+ 2aa:	ce 01       	movw	r24, r28
+ 2ac:	01 96       	adiw	r24, 0x01	; 1
+ 2ae:	5d df       	rcall	.-326    	; 0x16a <_ZN9LedDriverC1Ehh>
+ 2b0:	4b 81       	ldd	r20, Y+3	; 0x03
+ 2b2:	5c 81       	ldd	r21, Y+4	; 0x04
+ 2b4:	69 81       	ldd	r22, Y+1	; 0x01
+ 2b6:	7a 81       	ldd	r23, Y+2	; 0x02
+ 2b8:	ce 01       	movw	r24, r28
+ 2ba:	4b 96       	adiw	r24, 0x1b	; 27
+ 2bc:	97 df       	rcall	.-210    	; 0x1ec <_ZN10DriveLightC1E9LedDriverS0_>
+	CrownLight crownLight = CrownLight(crownLedDrivers, crownLedAmount);
+ 2be:	4b e0       	ldi	r20, 0x0B	; 11
+ 2c0:	be 01       	movw	r22, r28
+ 2c2:	6b 5f       	subi	r22, 0xFB	; 251
+ 2c4:	7f 4f       	sbci	r23, 0xFF	; 255
+ 2c6:	ce 01       	movw	r24, r28
+ 2c8:	4f 96       	adiw	r24, 0x1f	; 31
+ 2ca:	17 df       	rcall	.-466    	; 0xfa <_ZN10CrownLightC1EP9LedDriverc>
+ 2cc:	ce 01       	movw	r24, r28
 	
 	driveLight.drive();
- 2c4:	4b 96       	adiw	r24, 0x1b	; 27
- 2c6:	98 df       	rcall	.-208    	; 0x1f8 <_ZN10DriveLight5driveEv>
- 2c8:	ce 01       	movw	r24, r28
- 2ca:	4f 96       	adiw	r24, 0x1f	; 31
+ 2ce:	4b 96       	adiw	r24, 0x1b	; 27
+ 2d0:	98 df       	rcall	.-208    	; 0x202 <_ZN10DriveLight5driveEv>
+ 2d2:	ce 01       	movw	r24, r28
+ 2d4:	4f 96       	adiw	r24, 0x1f	; 31
 	
 	while(1)
 	{
 		crownLight.countUp();
- 2cc:	45 df       	rcall	.-374    	; 0x158 <_ZN10CrownLight7countUpEv>
- 2ce:	fc cf       	rjmp	.-8      	; 0x2c8 <main+0xb8>
+ 2d6:	40 df       	rcall	.-384    	; 0x158 <_ZN10CrownLight7countUpEv>
+ 2d8:	fc cf       	rjmp	.-8      	; 0x2d2 <main+0xb8>
 
-000002d0 <_exit>:
- 2d0:	f8 94       	cli
+000002da <_exit>:
+ 2da:	f8 94       	cli
 
-000002d2 <__stop_program>:
- 2d2:	ff cf       	rjmp	.-2      	; 0x2d2 <__stop_program>
+000002dc <__stop_program>:
+ 2dc:	ff cf       	rjmp	.-2      	; 0x2dc <__stop_program>
