@@ -3,12 +3,6 @@
 DriveLight::DriveLight(LedDriver frontLedDriver, LedDriver backLedDriver)
 : _frontLedDriver(frontLedDriver), _backLedDriver(backLedDriver)
 {
-	// TIMER --------------
-	
-	TCCR0A &= 0b11111100;
-	TCCR0B = 0b00000010;
-	
-	// --------------------
 }
 
 void DriveLight::off()
@@ -19,12 +13,12 @@ void DriveLight::off()
 
 void DriveLight::drive()
 {
-	_frontLedDriver.on(85);
-	_backLedDriver.on(42);
+	_frontLedDriver.on(255);
+	_backLedDriver.on(52);
 }
 
 void DriveLight::brake()
 {
-	_frontLedDriver.on(85);
-	_backLedDriver.on();
+	_frontLedDriver.on(255);
+	_backLedDriver.on(223);
 }
