@@ -7,7 +7,7 @@
 #include <avr/io.h>
 #include <stdlib.h>
 #include <math.h>
-#include "uart.h"
+#include "Headers/uart.h"
 
 // Target CPU frequency
 #define XTAL 16000000

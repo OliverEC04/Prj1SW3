@@ -6,7 +6,7 @@
  */ 
 
 #include <avr/io.h>
-#include "i2c.h"
+#include "Headers/i2c.h"
 
 #define MMA8652_BASE_ADDRESS 0x1D
 #define READ_MASK 0b00000001

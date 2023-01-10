@@ -5,10 +5,10 @@
 * Author: terke
 */
 
-#include "Timer.h"
+#include "Headers/Timer.h"
 extern Timer T;
 
-#include "Position.h"
+#include "Headers/Position.h"
 
 Position P;
 

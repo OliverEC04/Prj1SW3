@@ -28,6 +28,18 @@
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
     <EraseKey />
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+  <options />
+  <configurations />
+  <files />
+  <documentation help="" />
+  <offline-documentation help="" />
+  <dependencies>
+    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.52.0" />
+  </dependencies>
+</framework-data>
+    </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -152,7 +164,28 @@
     <Compile Include="Headers\DriveLight.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Headers\i2c.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Headers\LedDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Headers\mma8652.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Headers\Motor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Headers\Position.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Headers\Timer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Headers\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="i2c.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="LedDriver.cpp">
@@ -162,6 +195,21 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="mma8652.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Motor.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Position.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Timer.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="uart.cpp">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
