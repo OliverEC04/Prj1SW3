@@ -8,6 +8,8 @@
 
 #include "Headers/Motor.h"
 
+#include "Headers/mma8652.h"
+
 Motor M;
 // if ((OCR4A != M.getTargetOCR()) || ((PORTH & (1<<0)) != M.getTargetDirection()))
 ISR(TIMER5_OVF_vect)
