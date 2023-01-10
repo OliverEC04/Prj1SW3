@@ -27,7 +27,7 @@ int main(void)
 	{
 	}
 	M.setSpeed(50,1);
-	while (AccY()>-40) //-320    320
+	while (AccY()>-30) //-320    320
 	{
 	}
 	M.setSpeed(100,0);
