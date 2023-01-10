@@ -58,6 +58,8 @@ Motor::Motor()
 	TIMSK5 = 0b00000001;
 	sei();
 	
+	initAcc();
+	
 	targetOCR_ = 32000;
 	
 	targetDirection_ = 0;

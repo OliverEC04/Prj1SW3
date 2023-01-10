@@ -21,10 +21,32 @@ extern Position P;
 
 int main(void)
 {		
-	while(1)
+	int time = 0;
+	M.setSpeed(100,2);
+	while (P.getPosition() < 2)
 	{
-		
 	}
+	M.setSpeed(50,1);
+	while (AccY()>-40) //-320    320
+	{
+	}
+	M.setSpeed(100,0);
+	TCNT3 = 0;
+	time = T.getTime();
+	while (T.getTime() > (time+2))
+	{
+	}
+	M.setSpeed(-100,0);
+	TCNT3 = 0;
+	time = T.getTime();
+	while (T.getTime() > (time+3))
+	{
+	}
+	M.setSpeed(20,2);
+	while (1)
+	{
+	}
+	return 0;
 }
 
 void positionUpdate()
