@@ -6,11 +6,11 @@ LedDriver::LedDriver(unsigned char port, unsigned char bit)
 	switch(_port)
 	{
 		case 'A':
-			DDRA = 0xFF;
+			DDRA |= (1<<(_bit));
 			break;
 		
 		case 'B':
-			DDRB = 0xFF;
+			DDRB |= (1<<(_bit));
 			
 			if (_bit == 7)
 			{
@@ -35,15 +35,15 @@ LedDriver::LedDriver(unsigned char port, unsigned char bit)
 			break;
 			
 		case 'C':
-			DDRC = 0xFF;
+			DDRC |= (1<<(_bit));
 			break;
 		
 		case 'H':
-			DDRH = 0xFF;
+			DDRH |= (1<<(_bit));
 			break;
 			
 		case 'G':
-			DDRG = 0xFF;
+			DDRG |= (1<<(_bit));
 			
 			if (_bit == 5)
 			{
@@ -61,7 +61,7 @@ LedDriver::LedDriver(unsigned char port, unsigned char bit)
 
 void LedDriver::off()
 {
-	unsigned char pattern = 0b11111110 << _bit;
+	unsigned char pattern = ~(1<<_bit);
 	
 	switch(_port)
 	{
@@ -86,7 +86,7 @@ void LedDriver::off()
 
 void LedDriver::on(unsigned char intensity)
 {
-	unsigned char pattern = 0b00000001 << _bit;
+	unsigned char pattern = (0b00000001 << _bit);
 	
 	switch(_port)
 	{

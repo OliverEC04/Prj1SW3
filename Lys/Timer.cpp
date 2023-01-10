@@ -13,7 +13,7 @@ Timer T;
 ISR(TIMER3_OVF_vect)
 {
 	T.setTime(T.getTime()+1);
-	PORTB = T.getTime();
+	//PORTB = T.getTime();
 }
 
 // default constructor
