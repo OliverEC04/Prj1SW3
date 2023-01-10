@@ -23,7 +23,13 @@ int main(void)
 {		
 	while(1)
 	{
-		crownLight.countUp();
-		driveLight.drive();
+		
 	}
+}
+
+void positionUpdate()
+{
+	int position = P.getPosition();
+	
+	crownLight.setCount(position);
 }

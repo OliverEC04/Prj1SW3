@@ -18,6 +18,8 @@ ISR(INT0_vect)
 	{
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
+		
+		positionUpdate();
 	}
 }
 
@@ -27,6 +29,8 @@ ISR(INT1_vect)
 	{
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
+		
+		positionUpdate();
 	}
 }
 
