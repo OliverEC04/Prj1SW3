@@ -41,6 +41,21 @@ LedDriver::LedDriver(unsigned char port, unsigned char bit)
 		case 'H':
 			DDRH = 0xFF;
 			break;
+			
+		case 'G':
+			DDRG = 0xFF;
+			
+			if (_bit == 5)
+			{
+				// TIMER 0 (pin 4 (PG5)) -----
+				
+				TCCR0A = 0b00100011;
+				TCCR0B = 0b00000001;
+				OCR0A = 0;
+				
+				// ----------------------
+			}
+			break;
 	}
 }
 
