@@ -50,6 +50,8 @@ Position::Position()
 {
 	EICRA |= 0b00001111;
 	EIMSK |= 0b00000011;
+	position_ = 0;
+	lastTime_ = 0;
 } //Position
 
 // default destructor
