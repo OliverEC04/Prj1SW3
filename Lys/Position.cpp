@@ -8,9 +8,20 @@
 #include "Headers/Timer.h"
 extern Timer T;
 
+#include "Headers/CrownLight.h"
+extern CrownLight crownLight;
+
 #include "Headers/Position.h"
 
 Position P;
+
+void positionUpdate()
+{
+	const int position = P.getPosition();
+	
+	crownLight.countUp();
+}
+
 
 ISR(INT0_vect)
 {

@@ -26,10 +26,3 @@ int main(void)
 		
 	}
 }
-
-void positionUpdate()
-{
-	int position = P.getPosition();
-	
-	crownLight.setCount(position);
-}
