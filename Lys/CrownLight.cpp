@@ -1,5 +1,23 @@
 #include "Headers/CrownLight.h"
 
+const unsigned char crownLedAmount = 11;
+
+LedDriver crownLedDrivers[crownLedAmount] = {
+	LedDriver('C', 1),
+	LedDriver('C', 3),
+	LedDriver('C', 5),
+	LedDriver('C', 7),
+	LedDriver('A', 6),
+	LedDriver('A', 4),
+	LedDriver('C', 0),
+	LedDriver('C', 2),
+	LedDriver('C', 4),
+	LedDriver('C', 6),
+	LedDriver('A', 7)
+};
+
+CrownLight crownLight = CrownLight(crownLedDrivers, crownLedAmount);
+
 CrownLight::CrownLight(LedDriver* ledDrivers, char ledAmount)
 : _ledDrivers(ledDrivers), _ledAmount(ledAmount), _count(0)
 {
