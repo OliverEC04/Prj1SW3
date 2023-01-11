@@ -8,6 +8,7 @@ class DriveLight
 		void off() const;
 		void drive() const;
 		void brake() const;
+		int brakeOff;
 		
 	private:
 		LedDriver _frontLedDriver;

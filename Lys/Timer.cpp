@@ -5,6 +5,8 @@
 * Author: terke
 */
 
+#include "Headers/DriveLight.h"
+extern DriveLight driveLight;
 
 #include "Headers/Timer.h"
 
@@ -14,6 +16,11 @@ ISR(TIMER3_OVF_vect)
 {
 	T.setTime(T.getTime()+1);
 	//PORTB = T.getTime();
+	
+	if (T.getTime() == driveLight.brakeOff)
+	{
+		driveLight.drive();
+	}
 }
 
 // default constructor
