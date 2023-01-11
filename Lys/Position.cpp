@@ -24,7 +24,7 @@ ISR(INT0_vect)
 	{
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
-		SendInteger(P.getPosition());
+		SendInteger(1);
 		
 		crownLight.countUp();
 	}
@@ -48,7 +48,6 @@ Position::Position()
 	DDRD &= 0b11111100;
 	EICRA |= 0b00001111;
 	EIMSK |= 0b00000011;
-	sei();
 	position_ = 0;
 	lastTime_ = 0;
 } //Position

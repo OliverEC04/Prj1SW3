@@ -58,7 +58,6 @@ Motor::Motor()
 	TCCR5B = 0b00010011;
 	OCR5A = 12500 - 1; // 0.1 s
 	TIMSK5 = 0b00000001;
-	sei();
 	
 	initAcc();
 	

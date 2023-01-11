@@ -29,8 +29,10 @@ extern Speaker_driver S;
 int main(void)
 {		
 	InitUART(9600,8);
-	int time = 0;
 	DDRA &= ~(1<<5);
+	sei();
+	int time = 0;
+	
 	
 	S.initSpeakerdriver();
 	
