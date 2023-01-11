@@ -4,6 +4,10 @@
 #include "Headers/mma8652.h"
 
 #include "Headers/LedDriver.h"
+
+#include "Headers/LightTimer.h"
+extern LightTimer lightTimer;
+
 #include "Headers/DriveLight.h"
 extern DriveLight driveLight;
 

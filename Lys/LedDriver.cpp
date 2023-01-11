@@ -59,7 +59,7 @@ LedDriver::LedDriver(unsigned char port, unsigned char bit)
 	}
 }
 
-void LedDriver::off()
+void LedDriver::off() const
 {
 	unsigned char pattern = 0b11111110 << _bit;
 	
@@ -84,7 +84,7 @@ void LedDriver::off()
 	}
 }
 
-void LedDriver::on(unsigned char intensity)
+void LedDriver::on(unsigned char intensity) const
 {
 	unsigned char pattern = 0b00000001 << _bit;
 	
