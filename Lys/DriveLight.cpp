@@ -8,6 +8,7 @@ DriveLight driveLight = DriveLight(LedDriver('B', 5), LedDriver('G', 5));
 DriveLight::DriveLight(LedDriver frontLedDriver, LedDriver backLedDriver)
 : _frontLedDriver(frontLedDriver), _backLedDriver(backLedDriver)
 {
+	off();
 }
 
 void DriveLight::off() const

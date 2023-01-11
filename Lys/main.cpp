@@ -26,19 +26,20 @@ extern Position P;
 int main(void)
 {		
 	int time = 0;
-	DDRA = 0;
+	DDRA &= ~(1<<5);
 	while (1)
 	{
-		while (PINA == 0xFF)
+		while (PINA & (1<<5))
 		{
 		}
+		PORTB = 0xFF;
 		driveLight.drive();
 		M.setSpeed(100,2);
 		while (P.getPosition() < 2)
 		{
 		}
 		M.setSpeed(50,1);
-		driveLight.brake();
+		//driveLight.brake();
 		while (AccY()>-30) //-320    320
 		{
 		}
