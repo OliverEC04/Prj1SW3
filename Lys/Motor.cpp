@@ -59,7 +59,7 @@ Motor::Motor()
 	OCR5A = 12500 - 1; // 0.1 s
 	TIMSK5 = 0b00000001;
 	
-	initAcc();
+	//initAcc();
 	
 	targetOCR_ = 32000;
 	

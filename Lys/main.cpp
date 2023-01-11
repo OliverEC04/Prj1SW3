@@ -33,7 +33,6 @@ int main(void)
 	sei();
 	int time = 0;
 	
-	
 	S.initSpeakerdriver();
 	
 	while (1)
@@ -41,7 +40,7 @@ int main(void)
 		while (PINA & (1<<5))
 		{
 		}
-		//S.StartSound();
+		S.StartSound();
 		driveLight.drive();
 		M.setSpeed(100,2);
 		PORTB |= (1<<0);
@@ -53,13 +52,10 @@ int main(void)
 		{
 		}
 		PORTB |= (1<<2);
-		while (P.getPosition() < 3)
-		{
-		}
-		PORTB |= (1<<3);
 		M.setSpeed(50,1);
 		driveLight.brake(10);
-		while (AccY()>-30) //-320    320
+		time = T.getTime();
+		while (T.getTime() > (time+15)) //-320    320
 		{
 		}
 		M.setSpeed(100,0);

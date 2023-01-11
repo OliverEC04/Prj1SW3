@@ -24,7 +24,7 @@ ISR(INT0_vect)
 	{
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
-		SendInteger(1);
+		//SendInteger(1);
 		
 		crownLight.countUp();
 	}
@@ -36,7 +36,7 @@ ISR(INT1_vect)
 	{
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
-		SendChar('A');
+		//SendChar('A');
 		
 		crownLight.countUp();
 	}
