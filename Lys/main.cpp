@@ -32,14 +32,23 @@ int main(void)
 		while (PINA & (1<<5))
 		{
 		}
-		PORTB = 0xFF;
 		driveLight.drive();
 		M.setSpeed(100,2);
+		PORTB |= (1<<0);
+		while (P.getPosition() < 1)
+		{
+		}
+		PORTB |= (1<<1);
 		while (P.getPosition() < 2)
 		{
 		}
+		PORTB |= (1<<2);
+		while (P.getPosition() < 3)
+		{
+		}
+		PORTB |= (1<<3);
 		M.setSpeed(50,1);
-		//driveLight.brake();
+		driveLight.brake();
 		while (AccY()>-30) //-320    320
 		{
 		}

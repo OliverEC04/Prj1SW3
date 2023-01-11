@@ -61,7 +61,6 @@ void LedDriver::off() const
 		
 		case 'B':
 		PORTB &= pattern;
-		
 		break;
 		
 		case 'C':
