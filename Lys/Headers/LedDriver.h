@@ -6,7 +6,7 @@ class LedDriver
 	public:
 	LedDriver(unsigned char port, unsigned char bit);
 	void off() const;
-	void on(unsigned char intensity = 255) const;
+	void on(unsigned char intensity = 100) const;
 	
 	private:
 	unsigned char _port;

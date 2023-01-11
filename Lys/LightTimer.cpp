@@ -1,13 +1,18 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
-/*
+
+#include "Headers/DriveLight.h"
+extern DriveLight driveLight;
+
 #include "Headers/LightTimer.h"
 #include "Headers/Types.h"
 
 // Delay maa maks vaere 4000 ms (4 sek)
 
+
 LightTimer lightTimer;
 
+/*
 Event::Event(int _ms, void (*_callback)())
 {
 	ms = _ms;
@@ -85,3 +90,22 @@ void LightTimer::setTimer(int ms)
 	TCNT1 = 65535 - x;
 }
 */
+
+ISR (TIMER1_OVF_vect)
+{
+	driveLight.drive();
+	
+	TIMSK1 = 0;
+}
+
+LightTimer::LightTimer()
+{
+	TCCR1A = 0b00000000;
+	TCCR1B = 0b00000101;
+}
+
+void LightTimer::event(int ms)
+{
+	TCNT1 = 65536 - (ms / 64000);
+	TIMSK1 = 1 << 0;
+}
