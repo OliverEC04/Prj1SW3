@@ -76,7 +76,7 @@ void LedDriver::off() const
 
 void LedDriver::on(unsigned char intensity) const
 {
-	unsigned char pattern = (0b00000001 << _bit);
+	unsigned char pattern = (1 << _bit);
 	
 	switch(_port)
 	{
@@ -103,6 +103,7 @@ void LedDriver::on(unsigned char intensity) const
 		
 		case 'G':
 		PORTG |= pattern;
+		
 		if (_bit == 5)
 		{
 			OCR0A = intensity / 100 * 255;

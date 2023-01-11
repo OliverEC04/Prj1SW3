@@ -30,7 +30,7 @@ void DriveLight::brake() const
 	
 	//T.getTime();
 	
-	lightTimer.event(2000);
+	//lightTimer.event(2000);
 	
 	//lightTimer.addEvent(1000, testFunk);
 }
