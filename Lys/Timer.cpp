@@ -44,7 +44,7 @@ Timer::~Timer()
 {
 } //~Timer
 
-void Timer::setTime(unsigned char time)
+void Timer::setTime(unsigned int time)
 {
 	time10ms_ = time;
 }

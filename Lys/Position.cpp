@@ -4,6 +4,7 @@
 * Created: 09/01/2023 11:00:58
 * Author: terke
 */
+#include "Headers/uart.h"
 
 #include "Headers/Timer.h"
 extern Timer T;
@@ -18,8 +19,9 @@ Position P;
 
 ISR(INT0_vect)
 {
-	if (T.getTime() >= (P.getLastTime()+5))
+	if (T.getTime() >= (P.getLastTime()+50))
 	{
+		SendInteger(T.getTime());
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
 		
@@ -29,8 +31,9 @@ ISR(INT0_vect)
 
 ISR(INT1_vect)
 {
-	if (T.getTime() >= (P.getLastTime()+5))
+	if (T.getTime() >= (P.getLastTime()+50))
 	{
+		SendInteger(T.getTime());
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
 		
@@ -44,6 +47,7 @@ Position::Position()
 	DDRD &= 0b11111100;
 	EICRA |= 0b00001111;
 	EIMSK |= 0b00000011;
+	sei();
 	position_ = 0;
 	lastTime_ = 0;
 } //Position

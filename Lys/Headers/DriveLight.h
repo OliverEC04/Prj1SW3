@@ -7,7 +7,7 @@ class DriveLight
 		DriveLight(LedDriver frontLedDriver, LedDriver backLedDriver);
 		void off() const;
 		void drive() const;
-		void brake() const;
+		void brake(int breaktime);
 		int brakeOff;
 		
 	private:

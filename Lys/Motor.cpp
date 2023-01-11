@@ -51,7 +51,7 @@ Motor::Motor()
 	TCCR4B = 0b00011001;
 	ICR4 = 31999;
 	OCR4A = 32000;
-	PINH &= ~(1<<0);
+	PORTH &= ~(1<<0);
 	
 	// interupt timer
 	TCCR5A = 0b00000001;

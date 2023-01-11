@@ -18,13 +18,13 @@ class Timer
 public:
 protected:
 private:
-unsigned char time10ms_;
+unsigned int time10ms_;
 
 //functions
 public:
 	Timer();
 	~Timer();
-	void setTime(unsigned char time);
+	void setTime(unsigned int time);
 	int getTime() const;
 protected:
 private:

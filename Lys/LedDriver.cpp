@@ -24,9 +24,9 @@ LedDriver::LedDriver(unsigned char port, unsigned char bit)
 		{
 			// TIMER 2 (pin 9 (PH6)) -----
 			
-			TCCR2A = 0b00110001;
-			TCCR2B = 0b00001001;
-			OCR2A = 0;
+			TCCR2A = 0b00100001;
+			TCCR2B = 0b00000001;
+			OCR2B = 0;
 			
 			// ----------------------
 		}
@@ -39,9 +39,9 @@ LedDriver::LedDriver(unsigned char port, unsigned char bit)
 		{
 			// TIMER 0 (pin 4 (PG5)) -----
 			
-			TCCR0A = 0b00110001;
-			TCCR0B = 0b00001001;
-			OCR0A = 0;
+			TCCR0A = 0b00100001;
+			TCCR0B = 0b00000001;
+			OCR0B = 0;
 			
 			// ----------------------
 		}
@@ -96,7 +96,7 @@ void LedDriver::on(unsigned char intensity) const
 		
 		if (_bit == 6)
 		{
-			OCR2A = intensity / 100 * 255;
+			OCR2B = (int)((intensity * 255)/100);
 		}
 		break;
 		
@@ -105,7 +105,7 @@ void LedDriver::on(unsigned char intensity) const
 		
 		if (_bit == 5)
 		{
-			OCR0A = intensity / 100 * 255;
+			OCR0B = (int)((intensity * 255)/100);
 		}
 		
 		break;		
