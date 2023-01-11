@@ -79,11 +79,11 @@ int main(void)
 		{
 		}
 		M.setSpeed(0,1);
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		driveLight.brake(10);
-=======
+//=======
 		S.EndSound();
->>>>>>> 0c1fd34984301c6190ef5cf1ed804b5e384af99a
+//>>>>>>> 0c1fd34984301c6190ef5cf1ed804b5e384af99a
 	}
 	return 0;
 }
