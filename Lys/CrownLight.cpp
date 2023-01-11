@@ -1,5 +1,8 @@
 #include "Headers/CrownLight.h"
 
+#include "Headers/Speaker_driver.h"
+extern Speaker_driver S;
+
 const unsigned char crownLedAmount = 11;
 
 LedDriver crownLedDrivers[crownLedAmount] = {
@@ -53,5 +56,6 @@ void CrownLight::countUp()
 	if (_count < _ledAmount)
 	{
 		setCount(++_count);
+		S.ReflektorSound();
 	}
 }

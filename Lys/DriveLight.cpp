@@ -16,19 +16,23 @@ DriveLight::DriveLight(LedDriver frontLedDriver, LedDriver backLedDriver)
 	off();
 }
 
-void DriveLight::off() const
+void DriveLight::off()
 {
 	_frontLedDriver.off();
 	_backLedDriver.off();
 }
 
-void DriveLight::drive() const
+void DriveLight::drive()
 {
 	_frontLedDriver.on(100);
 	_backLedDriver.on(50);
 }
 
+<<<<<<< HEAD
 void DriveLight::brake(int breaktime)
+=======
+void DriveLight::brake()
+>>>>>>> 0c1fd34984301c6190ef5cf1ed804b5e384af99a
 {
 	_frontLedDriver.on(100);
 	_backLedDriver.on(100);

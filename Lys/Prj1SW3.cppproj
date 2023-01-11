@@ -182,6 +182,9 @@
     <Compile Include="Headers\Position.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Headers\Speaker_driver.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Headers\Timer.h">
       <SubType>compile</SubType>
     </Compile>
@@ -189,6 +192,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Headers\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Headers\uart2.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="i2c.cpp">
@@ -215,10 +221,16 @@
     <Compile Include="Position.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Speaker_driver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Timer.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="uart.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="uart2.cpp">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
