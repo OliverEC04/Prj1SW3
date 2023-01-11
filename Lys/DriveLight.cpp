@@ -3,7 +3,7 @@
 #include "Headers/LightTimer.h"
 extern LightTimer lightTimer;
 
-DriveLight driveLight = DriveLight(LedDriver('B', 7), LedDriver('B', 6));
+DriveLight driveLight = DriveLight(LedDriver('H', 6), LedDriver('G', 5));
 
 DriveLight::DriveLight(LedDriver frontLedDriver, LedDriver backLedDriver)
 : _frontLedDriver(frontLedDriver), _backLedDriver(backLedDriver)
