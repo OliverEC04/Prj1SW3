@@ -48,7 +48,7 @@ int main(void)
 		}
 		PORTB |= (1<<3);
 		M.setSpeed(50,1);
-		//driveLight.brake();
+		driveLight.brake();
 		while (AccY()>-30) //-320    320
 		{
 		}

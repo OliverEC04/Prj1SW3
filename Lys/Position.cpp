@@ -15,13 +15,6 @@ extern CrownLight crownLight;
 
 Position P;
 
-void positionUpdate()
-{
-	const int position = P.getPosition();
-	
-	crownLight.countUp();
-}
-
 
 ISR(INT0_vect)
 {
@@ -30,7 +23,7 @@ ISR(INT0_vect)
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
 		
-		positionUpdate();
+		crownLight.countUp();
 	}
 }
 
@@ -41,7 +34,7 @@ ISR(INT1_vect)
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
 		
-		positionUpdate();
+		crownLight.countUp();
 	}
 }
 
