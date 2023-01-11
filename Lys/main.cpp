@@ -23,15 +23,22 @@ extern Timer T;
 #include "Headers/Position.h"
 extern Position P;
 
+#include "Headers/Speaker_driver.h"
+extern Speaker_driver S;
+
 int main(void)
 {		
 	int time = 0;
 	DDRA &= ~(1<<5);
+	
+	S.initSpeakerdriver();
+	
 	while (1)
 	{
 		while (PINA & (1<<5))
 		{
 		}
+		S.StartSound();
 		driveLight.drive();
 		M.setSpeed(100,2);
 		PORTB |= (1<<0);
@@ -70,6 +77,7 @@ int main(void)
 		{
 		}
 		M.setSpeed(0,1);
+		S.EndSound();
 	}
 	return 0;
 }

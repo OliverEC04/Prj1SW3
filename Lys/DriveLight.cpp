@@ -1,5 +1,8 @@
 #include "Headers/DriveLight.h"
 
+#include "Headers/Timer.h"
+extern Timer T;
+
 #include "Headers/LightTimer.h"
 extern LightTimer lightTimer;
 
@@ -13,19 +16,19 @@ DriveLight::DriveLight(LedDriver frontLedDriver, LedDriver backLedDriver)
 	off();
 }
 
-void DriveLight::off() const
+void DriveLight::off()
 {
 	_frontLedDriver.off();
 	_backLedDriver.off();
 }
 
-void DriveLight::drive() const
+void DriveLight::drive()
 {
 	_frontLedDriver.on(100);
 	_backLedDriver.on(50);
 }
 
-void DriveLight::brake() const
+void DriveLight::brake()
 {
 	_frontLedDriver.on(100);
 	_backLedDriver.on(100);

@@ -2,7 +2,7 @@
 * Position.cpp
 *
 * Created: 09/01/2023 11:00:58
-* Author: terke
+* Author: terkel
 */
 
 #include "Headers/Timer.h"
@@ -14,6 +14,7 @@ extern CrownLight crownLight;
 #include "Headers/Position.h"
 
 Position P;
+
 
 
 ISR(INT0_vect)

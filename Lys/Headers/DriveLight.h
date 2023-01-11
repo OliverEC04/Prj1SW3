@@ -5,9 +5,9 @@ class DriveLight
 {
 	public:
 		DriveLight(LedDriver frontLedDriver, LedDriver backLedDriver);
-		void off() const;
-		void drive() const;
-		void brake() const;
+		void off();
+		void drive();
+		void brake();
 		int brakeOff;
 		
 	private:
