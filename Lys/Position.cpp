@@ -20,11 +20,11 @@ Position P;
 
 ISR(INT0_vect)
 {
-	if (T.getTime() >= (P.getLastTime()+50))
+	if (T.getTime() >= (P.getLastTime()+5))
 	{
-		SendInteger(T.getTime());
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
+		SendInteger(P.getPosition());
 		
 		crownLight.countUp();
 	}
@@ -32,11 +32,11 @@ ISR(INT0_vect)
 
 ISR(INT1_vect)
 {
-	if (T.getTime() >= (P.getLastTime()+50))
+	if (T.getTime() >= (P.getLastTime()+5))
 	{
-		SendInteger(T.getTime());
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
+		SendChar('A');
 		
 		crownLight.countUp();
 	}

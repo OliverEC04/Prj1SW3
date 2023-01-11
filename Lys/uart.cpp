@@ -5,8 +5,7 @@
 // * Implementation file for Mega2560 UART driver
 // * Using UART 0
 
-#include <avr/io.h>
-#include <stdlib.h>
+
 #include "Headers/uart.h"
 
 // Target CPU frequency
