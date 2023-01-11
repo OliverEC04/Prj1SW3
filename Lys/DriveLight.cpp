@@ -28,6 +28,8 @@ void DriveLight::brake() const
 	_frontLedDriver.on(100);
 	_backLedDriver.on(87);
 	
+	//T.getTime();
+	
 	lightTimer.event(2000);
 	
 	//lightTimer.addEvent(1000, testFunk);
