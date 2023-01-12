@@ -3,6 +3,9 @@
 #include "Headers/Timer.h"
 extern Timer T;
 
+#include "Headers/LightTimer.h"
+extern LightTimer lightTimer;
+
 DriveLight driveLight = DriveLight(LedDriver('H', 6), LedDriver('G', 5));
 
 DriveLight::DriveLight(LedDriver frontLedDriver, LedDriver backLedDriver)
