@@ -45,9 +45,9 @@ ISR(INT1_vect)
 // default constructor
 Position::Position()
 {
-	DDRD &= 0b11111100;
-	EICRA |= 0b00001111;
-	EIMSK |= 0b00000011;
+	DDRE &= 0b11001111;
+	EICRB |= 0b00001111;
+	EIMSK |= 0b00110000;
 	position_ = 0;
 	lastTime_ = 0;
 } //Position
