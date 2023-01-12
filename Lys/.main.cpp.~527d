@@ -5,6 +5,9 @@
 
 #include "Headers/LedDriver.h"
 
+#include "Headers/LightTimer.h"
+extern LightTimer lightTimer;
+
 #include "Headers/DriveLight.h"
 extern DriveLight driveLight;
 

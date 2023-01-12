@@ -183,6 +183,9 @@
     <Compile Include="Headers\LedDriver.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Headers\LightTimer.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Headers\mma8652.h">
       <SubType>compile</SubType>
     </Compile>
@@ -214,6 +217,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="DriveLight.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LightTimer.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">
