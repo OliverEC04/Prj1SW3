@@ -52,6 +52,52 @@ int main(void)
 		M.setSpeed(50,1);
 		driveLight.brake(10);
 		time = T.getTime();
+		while (T.getTime() > (time+30))
+		{
+		}
+		M.setSpeed(100,3);
+		while (P.getPosition() < 3)
+		{
+		}
+		M.setSpeed(30,3);
+		while (P.getPosition() < 4)
+		{
+		}
+		M.setSpeed(100,2);
+		while (P.getPosition() < 5)
+		{
+		}
+		time = T.getTime();
+		while (T.getTime() > (time+10))
+		{
+		}
+		M.setSpeed(50,1);
+		while (P.getPosition() < 6)
+		{
+		}
+		M.setSpeed(-100,3);
+		while (P.getPosition() < 7)
+		{
+		}
+		time = T.getTime();
+		while (T.getTime() > (time+10))
+		{
+		}
+		M.setSpeed(-50,1);
+		while (P.getPosition() < 8)
+		{
+		}
+		M.setSpeed(100,3);
+		while (P.getPosition() < 11)
+		{
+		}
+		time = T.getTime();
+		while (T.getTime() > (time+15))
+		{
+		}
+		M.setSpeed(0,2);
+		S.EndSound();
+		/*time = T.getTime();
 		while (T.getTime() > (time+15)) //-320    320
 		{
 		}
@@ -74,8 +120,8 @@ int main(void)
 		{
 		}
 		M.setSpeed(0,1);
-		driveLight.brake(10);
-		S.EndSound();
+		driveLight.brake(10);*/
+		
 	}
 	return 0;
 }
