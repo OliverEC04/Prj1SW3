@@ -17,6 +17,10 @@ LedDriver::LedDriver(unsigned char port, unsigned char bit)
 		DDRC |= (1<<(_bit));
 		break;
 		
+		case 'D':
+		DDRD |= (1<<(_bit));
+		break;
+		
 		case 'H':
 		DDRH |= (1<<(_bit));
 		
@@ -46,6 +50,10 @@ LedDriver::LedDriver(unsigned char port, unsigned char bit)
 			// ----------------------
 		}
 		break;
+		
+		case 'L':
+		DDRL |= (1<<(_bit));
+		break;
 	}
 }
 
@@ -67,8 +75,20 @@ void LedDriver::off() const
 		PORTC &= pattern;
 		break;
 		
+		case 'D':
+		PORTD &= pattern;
+		break;
+		
+		case 'G':
+		PORTG &= pattern;
+		break;
+		
 		case 'H':
 		PORTH &= pattern;
+		break;
+		
+		case 'L':
+		PORTL &= pattern;
 		break;
 	}
 }
@@ -91,6 +111,10 @@ void LedDriver::on(unsigned char intensity) const
 		PORTC |= pattern;
 		break;
 		
+		case 'D':
+		PORTD |= pattern;
+		break;
+		
 		case 'H':
 		PORTH |= pattern;
 		
@@ -108,6 +132,10 @@ void LedDriver::on(unsigned char intensity) const
 			OCR0B = (int)((intensity * 255)/100);
 		}
 		
+		break;
+		
+		case 'L':
+		PORTL |= pattern;
 		break;		
 	}
 }

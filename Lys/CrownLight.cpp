@@ -6,17 +6,17 @@ extern Speaker_driver S;
 const unsigned char crownLedAmount = 11;
 
 LedDriver crownLedDrivers[crownLedAmount] = {
+	LedDriver('L', 5),
+	LedDriver('L', 7),
+	LedDriver('G', 1),
+	LedDriver('D', 7),
 	LedDriver('C', 1),
 	LedDriver('C', 3),
-	LedDriver('C', 5),
-	LedDriver('C', 7),
-	LedDriver('A', 6),
-	LedDriver('A', 4),
-	LedDriver('C', 0),
-	LedDriver('C', 2),
-	LedDriver('C', 4),
-	LedDriver('C', 6),
-	LedDriver('A', 7)
+	LedDriver('L', 4),
+	LedDriver('L', 6),
+	LedDriver('G', 0),
+	LedDriver('G', 2),
+	LedDriver('C', 0)
 };
 
 CrownLight crownLight = CrownLight(crownLedDrivers, crownLedAmount);
