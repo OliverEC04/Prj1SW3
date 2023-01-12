@@ -198,9 +198,6 @@
     <Compile Include="Headers\Timer.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Headers\Types.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Headers\uart.h">
       <SubType>compile</SubType>
     </Compile>
