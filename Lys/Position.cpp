@@ -18,25 +18,25 @@ Position P;
 
 
 
-ISR(INT0_vect)
+ISR(INT4_vect)
 {
 	if (T.getTime() >= (P.getLastTime()+5))
 	{
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
-		//SendInteger(1);
+		PORTB = P.getPosition();
 		
 		crownLight.countUp();
 	}
 }
 
-ISR(INT1_vect)
+ISR(INT5_vect)
 {
 	if (T.getTime() >= (P.getLastTime()+5))
 	{
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
-		//SendChar('A');
+		//PORTB = P.getPosition();
 		
 		crownLight.countUp();
 	}
