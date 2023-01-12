@@ -18,25 +18,25 @@ Position P;
 
 
 
-ISR(INT0_vect)
+ISR(INT4_vect)
 {
 	if (T.getTime() >= (P.getLastTime()+5))
 	{
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
-		//SendInteger(1);
+		PORTB = P.getPosition();
 		
 		crownLight.countUp();
 	}
 }
 
-ISR(INT1_vect)
+ISR(INT5_vect)
 {
 	if (T.getTime() >= (P.getLastTime()+5))
 	{
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
-		//SendChar('A');
+		//PORTB = P.getPosition();
 		
 		crownLight.countUp();
 	}
@@ -45,9 +45,9 @@ ISR(INT1_vect)
 // default constructor
 Position::Position()
 {
-	DDRD &= 0b11111100;
-	EICRA |= 0b00001111;
-	EIMSK |= 0b00000011;
+	DDRE &= 0b11001111;
+	EICRB |= 0b00001111;
+	EIMSK |= 0b00110000;
 	position_ = 0;
 	lastTime_ = 0;
 } //Position

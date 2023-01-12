@@ -26,6 +26,7 @@ extern Speaker_driver S;
 int main(void)
 {		
 	InitUART(9600,8);
+	initAcc();
 	DDRA &= ~(1<<5);
 	sei();
 	int time = 0;
@@ -48,16 +49,17 @@ int main(void)
 		while (P.getPosition() < 2)
 		{
 		}
-		PORTB |= (1<<2);
 		M.setSpeed(50,1);
 		driveLight.brake(10);
 		time = T.getTime();
-		while (T.getTime() > (time+15)) //-320    320
+		PORTB |= (1<<2);
+		while (AccY() > -40) //-320    320
 		{
 		}
 		M.setSpeed(100,0);
 		TCNT3 = 0;
 		time = T.getTime();
+		PORTB |= (1<<3);
 		while (T.getTime() > (time+2))
 		{
 		}
@@ -68,14 +70,65 @@ int main(void)
 		while (T.getTime() > (time+3))
 		{
 		}
-		M.setSpeed(20,2);
+		M.setSpeed(30,2);
+		while (AccY() > -320) //-320    320
+		{
+		}
+		M.setSpeed(90,3);
+		PORTB |= (1<<4);
+		while (P.getPosition() < 3)
+		{
+		}
+		M.setSpeed(30,3);
+		PORTB |= (1<<5);
+		while (P.getPosition() < 4)
+		{
+		}
+		M.setSpeed(100,2);
+		PORTB |= (1<<6);
+		while (P.getPosition() < 5)
+		{
+		}
+		time = T.getTime();
+		PORTB |= (1<<7);
+		while (T.getTime() > (time+10))
+		{
+		}
+		M.setSpeed(50,1);
+		while (P.getPosition() < 6)
+		{
+		}
+		M.setSpeed(-100,3);
+		while (P.getPosition() < 7)
+		{
+		}
+		time = T.getTime();
+		while (T.getTime() > (time+10))
+		{
+		}
+		M.setSpeed(-50,1);
+		while (P.getPosition() < 8)
+		{
+		}
+		M.setSpeed(100,3);
+		while (P.getPosition() < 11)
+		{
+		}
+		time = T.getTime();
+		while (T.getTime() > (time+15))
+		{
+		}
+		M.setSpeed(0,2);
+		S.EndSound();
+		/*time = T.getTime();
+		
 		time = T.getTime();
 		while (T.getTime() > (time+50))
 		{
 		}
 		M.setSpeed(0,1);
-		driveLight.brake(10);
-		S.EndSound();
+		driveLight.brake(10);*/
+		
 	}
 	return 0;
 }
