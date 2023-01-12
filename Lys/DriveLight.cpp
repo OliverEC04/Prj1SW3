@@ -21,14 +21,14 @@ void DriveLight::off() const
 
 void DriveLight::drive() const
 {
-	_frontLedDriver.on(100);
-	_backLedDriver.on(50);
+	_frontLedDriver.on(65);
+	_backLedDriver.on(7);
 }
 
 void DriveLight::brake(int breaktime)
 {
-	_frontLedDriver.on(100);
-	_backLedDriver.on(100);
+	_frontLedDriver.on(65);
+	_backLedDriver.on(27);
 	
 	brakeOff = T.getTime() + breaktime + 5;
 }
