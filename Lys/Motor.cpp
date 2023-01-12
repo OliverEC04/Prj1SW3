@@ -16,14 +16,14 @@ ISR(TIMER5_OVF_vect)
 {
 	unsigned int targetOCR = M.getTargetOCR();
 	int targetDirection = M.getTargetDirection();
-	if ((OCR4A != targetOCR) || ((PORTH & (1<<0)) != targetDirection))
+	if ((OCR4A != targetOCR) || ((PORTC & (1<<7)) != (targetDirection<<7)))
 	{
-		if ((OCR4A >= 24000) && ((PORTH & (1<<0)) != targetDirection))
+		if ((OCR4A >= 24000) && ((PORTC & (1<<7)) != (targetDirection<<7)))
 		{
-			PORTH ^= (1<<0);
+			PORTC ^= (1<<7);
 			OCR4A = 23980;
 		}
-		else if ((OCR4A < targetOCR) || ((PORTH & (1<<0)) != targetDirection))
+		else if ((OCR4A < targetOCR) || ((PORTC & (1<<7)) != (targetDirection<<7)))
 		{
 			OCR4A += 20;
 			if (OCR4A >= 24000)
@@ -46,12 +46,13 @@ ISR(TIMER5_OVF_vect)
 Motor::Motor()
 {
 	// motor PWM
-	DDRH |= 0b00001001;
+	DDRH |= 0b00001000;
+	DDRC |= 0b10000000;
 	TCCR4A = 0b11000010;
 	TCCR4B = 0b00011001;
 	ICR4 = 31999;
 	OCR4A = 32000;
-	PORTH &= ~(1<<0);
+	PORTC &= ~(1<<7);
 	
 	// interupt timer
 	TCCR5A = 0b00000001;

@@ -18,7 +18,7 @@ class Timer
 public:
 protected:
 private:
-unsigned int time10ms_;
+unsigned int time100ms_;
 
 //functions
 public:

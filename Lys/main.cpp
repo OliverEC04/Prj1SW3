@@ -38,9 +38,10 @@ int main(void)
 		while (PINA & (1<<5))
 		{
 		}
+		M.setSpeed(100,2);
 		S.StartSound();
 		driveLight.drive();
-		M.setSpeed(100,2);
+		
 		PORTB |= (1<<0);
 		while (P.getPosition() < 1)
 		{

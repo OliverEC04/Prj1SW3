@@ -36,7 +36,7 @@ Timer::Timer()
 	TIMSK3 = 0b00000001;
 	sei();
 	
-	time10ms_ = 0;
+	time100ms_ = 0;
 } //Timer
 
 // default destructor
@@ -46,10 +46,10 @@ Timer::~Timer()
 
 void Timer::setTime(unsigned int time)
 {
-	time10ms_ = time;
+	time100ms_ = time;
 }
 
 int Timer::getTime() const
 {
-	return time10ms_;
+	return time100ms_;
 }
