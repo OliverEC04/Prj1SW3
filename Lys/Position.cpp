@@ -24,7 +24,7 @@ ISR(INT4_vect)
 	{
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());
-		PORTB = P.getPosition();
+		//PORTB = P.getPosition();
 		
 		crownLight.countUp();
 	}
