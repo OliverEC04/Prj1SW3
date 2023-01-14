@@ -20,7 +20,7 @@ Position P;
 
 ISR(INT4_vect)
 {
-	if (T.getTime() >= (P.getLastTime()+5))
+	if (T.getTime() >= (P.getLastTime()+7))
 	{
 		P.setPosition(P.getPosition()+1);
 		P.setLastTime(T.getTime());

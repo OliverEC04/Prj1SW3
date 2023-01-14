@@ -42,6 +42,29 @@ ISR(TIMER5_OVF_vect)
 	}
 }
 
+ISR(TIMER1_OVF_vect)
+{
+	M.setSpeed(0,0);
+	OCR1B = 32437 - 324*M.getBreakForce();
+	if (M.getBreaks() <= M.getCurrentBreak())
+	{
+		TIMSK1 = 0b00000000;
+	}
+}
+
+ISR(TIMER1_COMPB_vect)
+{
+	if (M.getBreakDirection() != 0)
+	{
+		M.setSpeed(-1,0);
+	} 
+	else
+	{
+		M.setSpeed(1,0);
+	}
+	M.setCurrentBreak(M.getCurrentBreak()+1);
+}
+
 // default constructor
 Motor::Motor()
 {
@@ -59,7 +82,10 @@ Motor::Motor()
 	OCR5A = 12500 - 1; // 0.1 s
 	TIMSK5 = 0b00000001;
 	
-	//initAcc();
+	// break timer
+	TCCR1A = 0b00000001;
+	TCCR1B = 0b00010100;
+	OCR1A = 32437; // 1.038 s
 	
 	targetOCR_ = 32000;
 	
@@ -130,4 +156,63 @@ unsigned int Motor::getTargetOCR() const
 char Motor::getTargetDirection() const
 {
 	return targetDirection_;
+}
+
+void Motor::setBreak(int breaks, int breakForce, char breakDirection)
+{
+	TCNT1 = 15000;
+	
+	currentBreak_ = 0;
+	
+	if (breakForce < 0)
+	{
+		breakForce_ = 0;
+	} 
+	else if (breakForce > 100)
+	{
+		breakForce_ = 100;
+	}
+	else
+	{
+		breakForce_ = breakForce;
+	}
+	
+	OCR1B = 32437 - 162*breakForce_;
+	
+	breakDirection_ = breakDirection;
+	
+	if (breaks > 0)
+	{
+		breaks_ = breaks;
+		TIMSK1 = 0b00000101;
+	}
+	else
+	{
+		breaks_ = 0;
+	}
+}
+
+int Motor::getBreaks() const
+{
+	return breaks_;
+}
+
+int Motor::getBreakForce() const
+{
+	return breakForce_;
+}
+
+char Motor::getBreakDirection() const
+{
+	return breakDirection_;
+}
+
+int Motor::getCurrentBreak() const
+{
+	return currentBreak_;
+}
+
+void Motor::setCurrentBreak(int currentBreak)
+{
+	currentBreak_ = currentBreak;
 }

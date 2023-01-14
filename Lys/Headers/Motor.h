@@ -22,6 +22,10 @@ private:
 	unsigned int targetOCR_;
 	char targetDirection_; //0 er frem 1 er tilbage
 	int speed_; // hvad hastighedden var sidst
+	int breaks_; // antal brems
+	int breakForce_; // hvor kraftigt bremset er fra 0 til 100
+	char breakDirection_; //0 er frem 1 er tilbage
+	int currentBreak_; // nummeret på bremset startende fra 1;
 	
 
 //functions
@@ -31,6 +35,12 @@ public:
 	void setSpeed(int speed, double time);
 	unsigned int getTargetOCR() const;
 	char getTargetDirection() const;
+	void setBreak(int breaks, int breakForce, char breakDirection);
+	int getBreaks() const;
+	int getBreakForce() const;
+	char getBreakDirection() const;
+	int getCurrentBreak() const;
+	void setCurrentBreak(int currentBreak);
 protected:
 private:
 	Motor( const Motor &c );
