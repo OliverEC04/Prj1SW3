@@ -66,15 +66,15 @@ int main(void)
 		{
 			while (1)
 			{
-				M.setSpeed(30,0);
+				M.setSpeed(100,0);
 				TCNT3 = 0;
-				time = T.getTime() + 15;
+				time = T.getTime() + 10;
 				while (T.getTime() < time)
 				{
 				}
-				M.setSpeed(0,0);
+				M.setSpeed(-100,0);
 				TCNT3 = 0;
-				time = T.getTime() + 15;
+				time = T.getTime() + 7;
 				while (T.getTime() < time)
 				{
 				}
