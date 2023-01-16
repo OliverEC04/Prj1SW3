@@ -44,21 +44,21 @@ int main(void)
 		}
 		driveLight.drive();
 		S.StartSound();
-		M.setSpeed(90,0.9);
+		M.setSpeed(80,0.8);
 		PORTB |= (1<<0);
 		while (P.getPosition() < 1)
 		{
 		}
 		TCNT3 = 0;
-		time = T.getTime() + 4;
+		time = T.getTime() + 3;
 		while (T.getTime() < time)
 		{
 		}
-		M.setBreak(2,1,1);
+		M.setBreak(2,20,1);
 		while (TIMSK1 != 0)
 		{
 		}
-		M.setSpeed(20,0);
+		M.setSpeed(20,1);
 		driveLight.brake(0);
 		while (P.getPosition() < 2)
 		{
@@ -66,20 +66,21 @@ int main(void)
 		M.setSpeed(10,0);
 		PORTB |= (1<<1);
 		TCNT3 = 0;
-		time = T.getTime() + 14;
+		time = T.getTime() + 20;
 		while (T.getTime() < time)
 		{
 		}
-		M.setSpeed(30,0.5);
+		M.setSpeed(30,1);
 		PORTB |= (1<<2);
 		TCNT3 = 0;
-		time = T.getTime() + 20;
+		time = T.getTime() + 10;
 		while (T.getTime() < time)
 		{
 		}
-		M.setSpeed(75,0.5);
+		M.setSpeed(75,2);
+		TCNT3 = 0;
 		PORTB |= (1<<3);
-		time = T.getTime() + 20;
+		time = T.getTime() + 25;
 		while (T.getTime() < time)
 		{
 		}
@@ -89,7 +90,7 @@ int main(void)
 			accSum += accArray[j];
 		}
 		i = 0;
-		while (accSum < -3200) //-320    320
+		while (accSum < -5300) //-320    320
 		{
 			if (i == 20)
 			{
@@ -100,29 +101,14 @@ int main(void)
 			accArray[i] = acc;
 			i++;
 		}
-		M.setSpeed(20,0.5);
+		M.setSpeed(65,0);
+		M.setSpeed(10,1.2);
+		PORTB |= (1<<4);
 		while (P.getPosition() < 3)
 		{
 		}
-		M.setSpeed(1,0);
-		for (int j=0; j<20;j++)
-		{
-			accArray[j] = AccY();
-			accSum += accArray[j];
-		}
-		i = 0;
-		while (accSum < 200) //-320    320
-		{
-			if (i == 20)
-			{
-				i = 0;
-			}
-			acc = AccY();
-			accSum += (acc - accArray[i]);
-			accArray[i] = acc;
-			i++;
-		}
-		M.setSpeed(-1,0);
+		M.setSpeed(10,0);
+		M.setSpeed(0,1);
 		for (int j=0; j<20;j++)
 		{
 			accArray[j] = AccY();
@@ -145,9 +131,10 @@ int main(void)
 		while (T.getTime() < time)
 		{
 		}
-		M.setSpeed(1,0);
+		M.setSpeed(20,0);
 		TCNT3 = 0;
-		time = T.getTime() + 3;
+		PORTB |= (1<<6);
+		time = T.getTime() + 5;
 		while (T.getTime() < time)
 		{
 		}
@@ -155,27 +142,35 @@ int main(void)
 		while (P.getPosition() < 4)
 		{
 		}
-		M.setSpeed(30,0);
-		M.setSpeed(100,1.5);
+		M.setSpeed(10,0);
+		M.setSpeed(80,1.6);
 		while (P.getPosition() < 5)
 		{
 		}
 		TCNT3 = 0;
-		time = T.getTime() + 5;
+		time = T.getTime() + 10;
 		while (T.getTime() < time)
 		{
 		}
-		M.setBreak(1,10,1);
+		M.setBreak(2,10,1);
 		while (TIMSK1 != 0)
 		{
 		}
-		M.setSpeed(20,0);
+		if (P.getPosition() < 4)
+		{
+			M.setSpeed(20,0);
+			TCNT3 = 0;
+			time = T.getTime() + 10;
+			while (T.getTime() < time)
+			{
+			}
+		}
 		while (P.getPosition() < 6)
 		{
 		}
 		M.setSpeed(-1,0);
 		TCNT3 = 0;
-		time = T.getTime() + 5;
+		time = T.getTime() + 10;
 		while (T.getTime() < time)
 		{
 		}
@@ -183,19 +178,24 @@ int main(void)
 		while (P.getPosition() < 7)
 		{
 		}
-		M.setSpeed(-70,0);
 		TCNT3 = 0;
-		time = T.getTime() + 10;
+		time = T.getTime() + 5;
 		while (T.getTime() < time)
 		{
 		}
-		M.setSpeed(0,0);
+		M.setSpeed(-70,0);
+		M.setSpeed(0,1);
 		while (P.getPosition() < 8)
+		{
+		}
+		TCNT3 = 0;
+		time = T.getTime() + 20;
+		while (T.getTime() < time)
 		{
 		}
 		M.setSpeed(1,0);
 		TCNT3 = 0;
-		time = T.getTime() + 7;
+		time = T.getTime() + 10;
 		while (T.getTime() < time)
 		{
 		}
@@ -203,7 +203,8 @@ int main(void)
 		while (P.getPosition() < 11)
 		{
 		}
-		M.setSpeed(0,0);
+		M.setSpeed(50,0);
+		M.setSpeed(0,0.5);
 		PORTB |= (1<<7);	
 	}
 	return 0;
