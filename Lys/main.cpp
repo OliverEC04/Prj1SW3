@@ -44,6 +44,26 @@ int main(void)
 		}
 		driveLight.drive();
 		S.StartSound();
+		while (1)
+		{
+			M.setSpeed(15,0);
+			TCNT3 = 0;
+			time = T.getTime() + 15;
+			while (T.getTime() < time)
+			{
+			}
+			M.setSpeed(0,0);
+			TCNT3 = 0;
+			time = T.getTime() + 15;
+			while (T.getTime() < time)
+			{
+			}
+		}
+		/*while (PINA & (1<<5))
+		{
+		}
+		driveLight.drive();
+		S.StartSound();
 		M.setSpeed(80,0.8);
 		PORTB |= (1<<0);
 		while (P.getPosition() < 1)
@@ -205,7 +225,7 @@ int main(void)
 		}
 		M.setSpeed(50,0);
 		M.setSpeed(0,0.5);
-		PORTB |= (1<<7);	
+		PORTB |= (1<<7);*/	
 	}
 	return 0;
 }
