@@ -39,11 +39,55 @@ int main(void)
 	
 	while (1)
 	{
-		while (PINA & (1<<5))
+		while ((PINA & (1<<5)) & (PINA & (1<<2)))
 		{
 		}
 		driveLight.drive();
 		S.StartSound();
+<<<<<<< Updated upstream
+=======
+		if ((PINA & (1<<5)) == 0)
+		{
+			while (1)
+			{
+				M.setSpeed(15,0);
+				TCNT3 = 0;
+				time = T.getTime() + 15;
+				while (T.getTime() < time)
+				{
+				}
+				M.setSpeed(0,0);
+				TCNT3 = 0;
+				time = T.getTime() + 15;
+				while (T.getTime() < time)
+				{
+				}
+			}
+		}
+		if ((PINA & (1<<2)) == 0)
+		{
+			while (1)
+			{
+				M.setSpeed(30,0);
+				TCNT3 = 0;
+				time = T.getTime() + 15;
+				while (T.getTime() < time)
+				{
+				}
+				M.setSpeed(0,0);
+				TCNT3 = 0;
+				time = T.getTime() + 15;
+				while (T.getTime() < time)
+				{
+				}
+			}
+		}
+		/*while (PINA & (1<<5))
+		{
+		}
+		driveLight.drive();
+		S.StartSound();
+>>>>>>> Stashed changes
 		M.setSpeed(80,0.8);
 		PORTB |= (1<<0);
 		while (P.getPosition() < 1)
