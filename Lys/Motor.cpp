@@ -140,7 +140,14 @@ void Motor::setSpeed(int speed, double time)
 	if (time == 0)
 	{
 		OCR4A = targetOCR_;
-		PORTH |= targetDirection_;
+		if (targetDirection_)
+		{
+			PORTH |= targetDirection_;
+		}
+		else
+		{
+			PORTH &= ~(1<<4);
+		}
 	}
 	else if ((31250*time-3*(abs(speed-speed_)))/(3*(abs(speed-speed_))) >= 65535)
 	{
