@@ -46,13 +46,18 @@ int main(void)
 		S.StartSound();
 		while (1)
 		{
-			M.setSpeed(20,0);
+			M.setSpeed(15,0);
 			TCNT3 = 0;
-			time = T.getTime() + 5;
+			time = T.getTime() + 15;
 			while (T.getTime() < time)
 			{
 			}
-			M.setBreak(1,20,1);
+			M.setSpeed(0,0);
+			TCNT3 = 0;
+			time = T.getTime() + 15;
+			while (T.getTime() < time)
+			{
+			}
 		}
 		/*while (PINA & (1<<5))
 		{
