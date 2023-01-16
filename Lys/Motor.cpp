@@ -42,13 +42,17 @@ ISR(TIMER5_OVF_vect)
 	}
 }
 
-ISR(TIMER1_OVF_vect)
+ISR(TIMER1_COMPA_vect)
 {
-	M.setSpeed(0,0);
-	OCR1B = 32437 - 324*M.getBreakForce();
+	OCR4A = 32000;
+	if (M.getCurrentBreak()>0)
+	{
+		OCR1B = 32437 - 324*M.getBreakForce();
+	}
 	if (M.getBreaks() <= M.getCurrentBreak())
 	{
 		TIMSK1 = 0b00000000;
+		TIMSK5 = 0b00000001;
 	}
 }
 
@@ -56,11 +60,13 @@ ISR(TIMER1_COMPB_vect)
 {
 	if (M.getBreakDirection() != 0)
 	{
-		M.setSpeed(-1,0);
+		PORTH |= (1<<4);
+		OCR4A = 31500;
 	} 
 	else
 	{
-		M.setSpeed(1,0);
+		PORTH &= ~(1<<4);
+		OCR4A = 31500;
 	}
 	M.setCurrentBreak(M.getCurrentBreak()+1);
 }
@@ -161,6 +167,7 @@ char Motor::getTargetDirection() const
 void Motor::setBreak(int breaks, int breakForce, char breakDirection)
 {
 	TCNT1 = 15000;
+	TIFR1 = 0b00000111;
 	
 	currentBreak_ = 0;
 	
@@ -184,7 +191,9 @@ void Motor::setBreak(int breaks, int breakForce, char breakDirection)
 	if (breaks > 0)
 	{
 		breaks_ = breaks;
-		TIMSK1 = 0b00000101;
+		TIMSK1 = 0b00000110;
+		TIMSK5 = 0b00000000;
+		OCR4A = 32000;
 	}
 	else
 	{
