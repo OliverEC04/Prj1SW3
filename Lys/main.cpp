@@ -30,10 +30,6 @@ int main(void)
 	DDRA &= ~(1<<5);
 	sei();
 	int time;
-	int acc = 0;
-	int accSum = 0;
-	int accArray[20];
-	int i;
 	
 	S.initSpeakerdriver();
 	
