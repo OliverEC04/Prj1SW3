@@ -30,6 +30,10 @@ int main(void)
 	DDRA &= ~(1<<5);
 	sei();
 	int time;
+	int acc;
+	int accSum = 0;
+	int accArray[20];
+	int i;
 	
 	S.initSpeakerdriver();
 	
@@ -111,7 +115,7 @@ int main(void)
 			accSum += accArray[j];
 		}
 		i = 0;
-		while (accSum < 6400) //-320    320
+		while (accSum < 6000) //-320    320
 		{
 			if (i == 20)
 			{
@@ -242,7 +246,7 @@ int main(void)
 				{
 				}
 			}
-		}
-	}*/
+		}*/
+	}
 	return 0;
 }
