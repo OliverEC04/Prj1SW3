@@ -90,8 +90,8 @@ Motor::Motor()
 	
 	// break timer
 	TCCR1A = 0b00000001;
-	TCCR1B = 0b00010100;
-	OCR1A = 32437; // 1.038 s
+	TCCR1B = 0b00010011;
+	OCR1A = 12500 - 1;//32437; // 1.038 s
 	
 	targetOCR_ = 32000;
 	
@@ -174,7 +174,7 @@ char Motor::getTargetDirection() const
 
 void Motor::setBreak(int breaks, int breakForce, char breakDirection)
 {
-	TCNT1 = 15000;
+	TCNT1 = 0;
 	TIFR1 = 0b00000111;
 	
 	currentBreak_ = 0;
@@ -192,7 +192,7 @@ void Motor::setBreak(int breaks, int breakForce, char breakDirection)
 		breakForce_ = breakForce;
 	}
 	
-	OCR1B = 32437 - 162*breakForce_;
+	OCR1B = 12500 - 60*breakForce_;
 	
 	breakDirection_ = breakDirection;
 	
