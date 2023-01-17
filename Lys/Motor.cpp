@@ -47,7 +47,7 @@ ISR(TIMER1_COMPA_vect)
 	OCR4A = 32000;
 	if (M.getCurrentBreak()>0)
 	{
-		OCR1B = 32437 - 324*M.getBreakForce();
+		OCR1B = 12500 - 125*M.getBreakForce();
 	}
 	if (M.getBreaks() <= M.getCurrentBreak())
 	{

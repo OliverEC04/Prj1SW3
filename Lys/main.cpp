@@ -44,43 +44,35 @@ int main(void)
 		}
 		driveLight.drive();
 		S.StartSound();
-		M.setSpeed(80,0.8);
+		M.setSpeed(65,0.65);
 		PORTB |= (1<<0);
+		T.setTime(0);
 		while (P.getPosition() < 1)
 		{
 		}
-		TCNT3 = 0;
-		time = T.getTime() + 4;
-		while (T.getTime() < time)
-		{
-		}
-		M.setBreak(20,20,1);
-		while (TIMSK1 != 0)
-		{
-		}
-		M.setSpeed(20,1);
+		M.setSpeed(10,0.5);
 		driveLight.brake(0);
 		while (P.getPosition() < 2)
 		{
 		}
 		M.setSpeed(10,0);
-		PORTB |= (1<<1);
-		TCNT3 = 0;
-		time = T.getTime() + 20;
-		while (T.getTime() < time)
-		{
-		}
-		M.setSpeed(30,1);
-		PORTB |= (1<<2);
 		TCNT3 = 0;
 		time = T.getTime() + 10;
 		while (T.getTime() < time)
 		{
 		}
-		M.setSpeed(75,2);
+		M.setSpeed(20,0);
+		M.setSpeed(40,0.7);
 		TCNT3 = 0;
-		PORTB |= (1<<3);
-		time = T.getTime() + 25;
+		PORTB |= (1<<1);
+		time = T.getTime() + 10;
+		while (T.getTime() < time)
+		{
+		}
+		M.setSpeed(75,0.9);	
+		TCNT3 = 0;
+		PORTB |= (1<<2);
+		time = T.getTime() + 30;
 		while (T.getTime() < time)
 		{
 		}
@@ -101,29 +93,46 @@ int main(void)
 			accArray[i] = acc;
 			i++;
 		}
-		M.setSpeed(65,0);
+		M.setSpeed(60,0);
 		TCNT3 = 0;
-		PORTB |= (1<<4);
-		time = T.getTime() + 2;
+		PORTB |= (1<<3);
+		time = T.getTime() + 4;
 		while (T.getTime() < time)
 		{
 		}
-		M.setSpeed(10,1);
+		M.setSpeed(10,0.8);
 		while (P.getPosition() < 3)
 		{
 		}
-		M.setSpeed(10,0);
-		M.setSpeed(0,0.5);
+		M.setSpeed(5,0);
 		TCNT3 = 0;
-		time = T.getTime() + 7;
+		time = T.getTime() + 3;
 		while (T.getTime() < time)
 		{
 		}
-		M.setBreak(30,5,1);
+		M.setSpeed(0,0.5);
+		TCNT3 = 2000;
+		time = T.getTime() + 8;
+		while (T.getTime() < time)
+		{
+		}
+		M.setBreak(10,10,1);
+		PORTB |= (1<<4);
+		while (TIMSK1 != 0)
+		{
+		}
+		M.setBreak(5,30,1);
+		PORTB |= (1<<5);
+		while (TIMSK1 != 0)
+		{
+		}
+		M.setBreak(30,90,1);
+		PORTB |= (1<<6);
 		while (TIMSK1 != 0)
 		{
 		}
 		M.setSpeed(10,0);
+		PORTB |= (1<<7);
 		while (P.getPosition() < 4)
 		{
 		}
@@ -137,12 +146,14 @@ int main(void)
 		while (T.getTime() < time)
 		{
 		}
-		M.setSpeed(0,0);
+		M.setSpeed(10,0.5);
 		while (P.getPosition() < 6)
 		{
 		}
-		M.setBreak(5,30,1);
-		while (TIMSK1 != 0)
+		M.setSpeed(0,0);
+		TCNT3 = 0;
+		time = T.getTime() + 5;
+		while (T.getTime() < time)
 		{
 		}
 		M.setSpeed(-1,0);
@@ -156,17 +167,18 @@ int main(void)
 		{
 		}
 		TCNT3 = 0;
-		time = T.getTime() + 7;
+		time = T.getTime() + 8;
 		while (T.getTime() < time)
 		{
 		}
-		M.setSpeed(-70,0);
-		M.setSpeed(0,1);
+		M.setSpeed(-60,0);
+		M.setSpeed(10,0.5);
 		while (P.getPosition() < 8)
 		{
 		}
+		M.setSpeed(0,0);
 		TCNT3 = 0;
-		time = T.getTime() + 8;
+		time = T.getTime() + 7;
 		while (T.getTime() < time)
 		{
 		}
