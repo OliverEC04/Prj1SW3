@@ -20,7 +20,7 @@ public:
 protected:
 private:
 	unsigned int targetOCR_;
-	char targetDirection_; //0 er frem 1 er tilbage
+	char targetDirection_; //0 er frem (1<<4) er tilbage
 	int speed_; // hvad hastighedden var sidst
 	int breaks_; // antal brems
 	int breakForce_; // hvor kraftigt bremset er fra 0 til 100
