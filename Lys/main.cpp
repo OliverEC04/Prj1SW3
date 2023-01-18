@@ -44,6 +44,8 @@ int main(void)
 		}
 		driveLight.drive();
 		S.StartSound();
+		P.setPosition(0);
+		crownLight.setCount(0);
 		M.setSpeed(65,0.65);
 		PORTB |= (1<<0);
 		T.setTime(0);
