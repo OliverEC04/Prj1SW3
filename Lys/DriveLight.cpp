@@ -8,7 +8,7 @@ DriveLight driveLight = DriveLight(LedDriver('H', 6), LedDriver('G', 5));
 DriveLight::DriveLight(LedDriver frontLedDriver, LedDriver backLedDriver)
 : _frontLedDriver(frontLedDriver), _backLedDriver(backLedDriver)
 {
-	int brakeOff = 0;
+	int brakeOff = -1;
 	
 	off();
 }
