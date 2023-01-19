@@ -20,10 +20,10 @@ Position P;
 
 ISR(INT4_vect)
 {
-	if (T.getTime() >= (P.getLastTime()+7))
+	if (T.getTime() >= (P.getLastTime()))
 	{
 		P.setPosition(P.getPosition()+1);
-		P.setLastTime(T.getTime());
+		P.setLastTime(T.getTime()+6);
 		//PORTB = P.getPosition();
 		
 		crownLight.countUp();
@@ -32,10 +32,10 @@ ISR(INT4_vect)
 
 ISR(INT5_vect)
 {
-	if (T.getTime() >= (P.getLastTime()+5))
+	if (T.getTime() >= (P.getLastTime()))
 	{
 		P.setPosition(P.getPosition()+1);
-		P.setLastTime(T.getTime());
+		P.setLastTime(T.getTime()+6);
 		//PORTB = P.getPosition();
 		
 		crownLight.countUp();

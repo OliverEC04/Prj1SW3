@@ -80,10 +80,18 @@ void LedDriver::off() const
 		break;
 		
 		case 'G':
+		if (_bit == 5)
+		{
+			OCR0B = 0;
+		}
 		PORTG &= pattern;
 		break;
 		
 		case 'H':
+		if (_bit == 6)
+		{
+			OCR2B = 0;
+		}
 		PORTH &= pattern;
 		break;
 		
