@@ -46,8 +46,7 @@ int main(void)
 		S.StartSound();
 		P.setPosition(0);
 		crownLight.setCount(0);
-		M.setSpeed(65,0.65);
-		PORTB |= (1<<0);
+		M.setSpeed(65,0.3);
 		T.setTime(0);
 		while (P.getPosition() < 1)
 		{
@@ -66,7 +65,6 @@ int main(void)
 		M.setSpeed(20,0);
 		M.setSpeed(40,0.7);
 		TCNT3 = 0;
-		PORTB |= (1<<1);
 		time = T.getTime() + 8;
 		while (T.getTime() < time)
 		{
@@ -74,7 +72,6 @@ int main(void)
 		M.setSpeed(60,0);
 		M.setSpeed(94,1);	
 		TCNT3 = 0;
-		PORTB |= (1<<2);
 		time = T.getTime() + 12;
 		while (T.getTime() < time)
 		{
@@ -97,13 +94,13 @@ int main(void)
 			i++;
 		}
 		M.setSpeed(60,0);
-		M.setSpeed(10,0.7);
-		driveLight.brake(9);
+		M.setSpeed(15,0.7);
+		driveLight.brake(7);
 		while (P.getPosition() < 3)
 		{
 		}
-		M.setSpeed(8,0);
-		TCNT3 = 0;
+		M.setSpeed(7,0);
+		TCNT3 = 9000;
 		driveLight.brake(0);
 		time = T.getTime() + 6;
 		while (T.getTime() < time)
@@ -111,39 +108,27 @@ int main(void)
 		}
 		M.setSpeed(0,0);
 		TCNT3 = 0;
-		driveLight.brake(2);
-		PORTB |= (1<<3);
+		PORTB |= (1<<0);
+		driveLight.brake(0);
 		time = T.getTime() + 4;
 		while (T.getTime() < time)
 		{
 		}
-		M.setSpeed(-1,0);
-		M.setBreak(4,10,1);
-		driveLight.brake(3);
-		PORTB |= (1<<4);
-		while (TIMSK1 != 0)
-		{
-		}
-		M.setBreak(3,40,1);
-		driveLight.brake(4);
-		PORTB |= (1<<5);
-		while (TIMSK1 != 0)
-		{
-		}
-		M.setBreak(35,99,1);
-		driveLight.brake(30);
-		PORTB |= (1<<6);
+		M.setBreak(11,5,1);
+		PORTB |= (1<<2);
+		driveLight.brake(11);
 		while (TIMSK1 != 0)
 		{
 		}
 		M.setSpeed(0,0);
 		TCNT3 = 0;
-		time = T.getTime() + 5;
+		PORTB |= (1<<4);
+		time = T.getTime() + 3;
 		while (T.getTime() < time)
 		{
 		}
 		M.setSpeed(10,0);
-		PORTB |= (1<<7);
+		PORTB |= (1<<6);
 		while (P.getPosition() < 4)
 		{
 		}
@@ -153,26 +138,27 @@ int main(void)
 		{
 		}
 		TCNT3 = 0;
-		time = T.getTime() + 4;
+		time = T.getTime() + 2;
 		while (T.getTime() < time)
 		{
 		}
-		M.setSpeed(10,0.6);
-		driveLight.brake(6);
+		M.setSpeed(40,0);
+		M.setSpeed(10,0.5);
+		driveLight.brake(5);
 		while (P.getPosition() < 6)
 		{
 		}
 		M.setSpeed(0,0);
 		TCNT3 = 0;
 		driveLight.brake(0);
-		time = T.getTime() + 6;
+		time = T.getTime() + 5;
 		while (T.getTime() < time)
 		{
 		}
 		M.setSpeed(-1,0);
 		TCNT3 = 0;
-		driveLight.brake(37);
-		time = T.getTime() + 5;
+		driveLight.brake(15);
+		time = T.getTime() + 3;
 		while (T.getTime() < time)
 		{
 		}
@@ -180,26 +166,27 @@ int main(void)
 		while (P.getPosition() < 7)
 		{
 		}
-		TCNT3 = 0;
+		TCNT3 = 5000;
 		time = T.getTime() + 7;
 		while (T.getTime() < time)
 		{
 		}
 		M.setSpeed(-50,0);
-		M.setSpeed(-10,0.5);
+		M.setSpeed(-15,0.5);
+		driveLight.brake(10);
 		while (P.getPosition() < 8)
 		{
 		}
 		M.setSpeed(0,0);
 		TCNT3 = 0;
 		driveLight.brake(0);
-		time = T.getTime() + 6;
+		time = T.getTime() + 4;
 		while (T.getTime() < time)
 		{
 		}
 		M.setSpeed(1,0);
 		TCNT3 = 0;
-		time = T.getTime() + 4;
+		time = T.getTime() + 3;
 		while (T.getTime() < time)
 		{
 		}
@@ -210,15 +197,13 @@ int main(void)
 		M.setSpeed(50,0);
 		M.setSpeed(0,0.5);
 		TCNT3 = 0;
-		driveLight.brake(0);
+		driveLight.brake(1);
 		time = T.getTime() + 7;
 		while (T.getTime() < time)
 		{
 		}
 		driveLight.off();
 		S.EndSound();
-		
-		PORTB |= (1<<7);
 		/*while ((PINA & (1<<5)) & (PINA & (1<<2)))
 		{
 		}
